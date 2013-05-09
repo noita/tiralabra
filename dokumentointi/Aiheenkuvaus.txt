@@ -1,0 +1,33 @@
+Aihe: Peli
+Luodaan nelikulmainen labyrintti, jonka kussakin kulmassa on haamu.
+Satunnaisessa kohtaa labyrinttiä on (mahd. liikkuva) kohde. Haamut pyrkivät saavuttamaan kohteen kukin erilaista polunetsintäalgoritmia käyttäen. 
+Pelaaja asettaa lähtötilanteen nähtyään panoksen jollekkin/joillekkin haamuista lyöden vetoa tämän puolesta. Yksinkertaisemmilla algoritmeilla on parempi kerroin, hienostuneemmilla huonompi. Tilanne ei myöskään ole sama kaikille haamuille; jokin voi aloittaa lähempää kohdetta kuin toinen. Kun pelaaja on asettanut panoksensa, esitetään haamujen liike labyrintissä, kunnes jokin haamuista saavuttaa kohteen. Haamut liikkuvat eri nopeuksilla pelin tasoittamiseksi.
+Pelaajalle näytetään jonkinlainen kuvaus haamuista, jonka perusteella hän voi tehdä valintansa.
+Mahdollisesti useampia pelaajia.
+
+
+Algoritmeja haamuille:
+
+A*
+-Tehokasta algoritmia käyttävä hahmo liikkuu hitaasti, jotta muillakin olisi mahdollisuus voittaa. Voidaan toteuttaa eri versioita erilaisilla heurestiikkafunktioilla.
+
+Täysin satunnainen liike
+- Hahmo siirtyy risteyksissä satunnaiseen suuntaan, ei kuitenkaan takaisin suuntaan, josta tuli, ellei hahmo ole umpikujassa.
+- "Algoritmi" toimii vakioajassa.
+
+Yksinkertainen ahne algoritmi
+- Algoritmi siirtää hahmoa x,y-koordinaateissa aina kohteen suuntaan. Algoritmi minimoi kohteen sijainnin ja hahmon sijainnin x- ja y-koordinaattien erotuksen maksimia. Mikäli erot ovat samat, valitaan satunnaisesti.
+
+[jatkuu…]
+
+Kohde voisi liikkua käyttäen algoritmia, joka pyrkii maksimoimaan etäisyyden kaikkiin haamuihin. Se siis etsii lyhimmät polut haamuihin, ja liikkuu suuntaan, joka kasvattaisi näitä eniten. Algoritmina voisi toimia A*, joka suoritettaisiin erikseen jokaiselle mahdolliselle liikkeelle(maks. viisi kertaa/vuoro).
+
+
+Käyttäjät:
+Pelaaja(t)
+
+Pelaajan toiminnot:
+- uuden pelin aloittaminen
+- panoksen asettaminen
+- kilpailun aloittaminen
+- pelin lopettaminen

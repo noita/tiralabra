@@ -1,0 +1,21 @@
+6.5
+Alkutapaaminen.
+
+7.5
+Lopullinen idea pelille (syntyi tapaamisessa mainutun Pac-Manin pohjalta, kiitos!). Kirjoitettu määrittelydokumentti, jota pitänee vielä päivittää algoritmien osalta.
+
+8.5
+Suunnittelutyö aloitettu. Luotu kasa luokkia ja niiden torsoja olioille.
+Lähdin muotoilemaan käyttöliittymää jo aika pitkälle. Ei ehkä paras idea, mutta mielestäni on vaikea hahmottaa toimiiko ohjelma ilman minkään laista visuaalista palutetta. Johtunee kokemuksen puuttesta. Käyttiksen tekemiseen menee myös aikalailla aikaa, joten haluaisin sen pian pois jaloista.
+
+9.5
+Kirjoitettu lisää koodia.
+Käytin myös pari tuntia taas googlaten miten saan layoutin mieleisekseni.
+Piirsin myös alustavia grafiikoita, joita ehdin parannella myöhemmin.
+Muutin rakennetta hieman käyttiksen tekemisen helpottamiseksi.
+Ohjelma lataa nyt tekstitiedostosta labyrintin.
+Tällä hetkellä ainoa labyrintti on Pac-Manista tuttua muotoa.
+
+
+
+Seuraavan viikon aikana haluaisin saada pelin peruskulun kokolailla valmiiksi, jotta voin keskittyä pian itse polunetsintään.
