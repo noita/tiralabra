@@ -2,11 +2,12 @@
 package tiralabra;
 
 import java.util.*;
+import javax.swing.JOptionPane;
 import tiralabra.hahmot.Haamu;
 import tiralabra.hahmot.Kohde;
 import tiralabra.kayttoliittyma.GUI;
 import tiralabra.kayttoliittyma.Grafiikka;
-import tiralabra.kayttoliittyma.Labyrintti;
+import tiralabra.kayttoliittyma.LabyrintinLataus;
 
 /**
  * Kokoaa pelin elementit, ohjaa pelin etenemistä.
@@ -16,35 +17,40 @@ import tiralabra.kayttoliittyma.Labyrintti;
 public class Peli implements Runnable{
     ArrayList<Haamu> haamut = new ArrayList<Haamu>();
     Kohde kohde;
-    Labyrintti labyrintti;
+    LabyrintinLataus labyrintti;
     GUI kayttis;
     Grafiikka grafiikka;
 
     
     @Override
     public void run() {
-        //luodaan uusi pelikierros
-        uusiKierros();
         //luodaan GUI
         grafiikka = new Grafiikka(this);
         kayttis = new GUI(this);
+        //luodaan uusi pelikierros
+        uusiKierros("pacman");
         //pyydetään panosten asetusta
         
         //kutsutaan liikettä, kunnes kierros loppuu
     }
     
     /**
-     * Alustaa uuden pelikierroksen.
+     * Alustaa uuden pelin halutulla kentällä.
+     * 
+     * @param kentta Tiedostonimi kentälle
      */
-    public void uusiKierros(){
-        labyrintti = new Labyrintti(25);
+    public void uusiKierros(String kentta){
+        labyrintti = new LabyrintinLataus(kentta);
+        kayttis.muutaKokoa(labyrintti.getKoko());
         
         haamut.clear();
         haamut.add(new Haamu(1,1,"Astar"));
         haamut.add(new Haamu(1,23,"Random"));
         haamut.add(new Haamu(23,23,"Greedy"));
         //haamut.add(new Haamu(23,1,"jtn."));
+        //lisää haamuja...
         
+        //luodaan kohde satunnaiseen tyhjään kohtaan labyrinttiä.
         kohde = null;
         while (kohde==null){
             int x = new Random().nextInt(labyrintti.getKoko()-7)+3;
@@ -53,19 +59,22 @@ public class Peli implements Runnable{
                 kohde = new Kohde(x,y);
             }
         }
-        
     }
     
-
-    /*private void uusiLabyrintti(){
-        
-    }*/
+    public void pyydaTasoa(){
+        String taso = JOptionPane.showInputDialog(kayttis.getIkkuna(), "Which stage?");
+        if (labyrintti.tarkistaOlemassaolo(taso)){
+            uusiKierros(taso);
+        } else {
+            JOptionPane.showMessageDialog(kayttis.getIkkuna(), "File not found");
+        }
+    }
     
     public ArrayList<Haamu> getHaamut(){
         return haamut;
     }
     
-    public Labyrintti getLabyrintti(){
+    public LabyrintinLataus getLabyrintti(){
         return labyrintti;
     }
             
@@ -77,6 +86,9 @@ public class Peli implements Runnable{
         return kohde;
     }
     
+    /**
+     * Sulkee peli-ikkuna ja lopettaa pelin.
+     */
     public void suljePeli(){
         kayttis.sulje();
     }

@@ -30,7 +30,7 @@ public class Grafiikka extends Canvas{
     @Override
     public void paint(Graphics g){
         
-        Labyrintti lab = peli.getLabyrintti();
+        LabyrintinLataus lab = peli.getLabyrintti();
         
         for (int i=0; i<lab.getKoko(); i++){
             for (int j=0; j<lab.getKoko(); j++){

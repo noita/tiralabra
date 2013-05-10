@@ -15,7 +15,7 @@ import tiralabra.Peli;
  */
 public class GUI {
     JFrame ikkuna = new JFrame("asdf");
-    Labyrintti labyrintti;
+    LabyrintinLataus labyrintti;
     Peli peli;
     
     public GUI(Peli peli){
@@ -54,12 +54,26 @@ public class GUI {
         valikkoSulje.addActionListener(new ValikonKuuntelija(peli));
         peliValikko.add(valikkoSulje);
         
+        JMenu tiedostoValikko = new JMenu("File");
+        valikko.add(tiedostoValikko);
+        
+        JMenuItem valikkoLataa = new JMenuItem("Load Stage");
+        valikkoLataa.addActionListener(new ValikonKuuntelija(peli));
+        tiedostoValikko.add(valikkoLataa);
+        
         ikkuna.setJMenuBar(valikko);
     }
     
-    //public void paivita(){
-    //    
-    //}
+    /**
+     * Muuttaa ikkunan kokoa.
+     */
+    public void muutaKokoa(int koko){
+        ikkuna.setSize(koko*20, koko*20+150);
+    }
+    
+    public JFrame getIkkuna(){
+        return ikkuna;
+    }
     
     public void sulje(){
         ikkuna.dispose();

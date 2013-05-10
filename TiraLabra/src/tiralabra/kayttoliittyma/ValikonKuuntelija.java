@@ -23,12 +23,15 @@ public class ValikonKuuntelija implements ActionListener{
         String valinta = ((JMenuItem)ae.getSource()).getText();
         if (valinta.equals("New Game")){
             //uusi peli
-            peli.uusiKierros();
+            peli.uusiKierros("pacman");
             peli.getGraf().repaint();
         } else if (valinta.equals("Quit Game")){
+            //lopeta peli
             peli.suljePeli();
+        } else if (valinta.equals("Load Stage")){
+            //lataa kenttä
+            peli.pyydaTasoa();
         }
-        
     }
     
 }

@@ -16,6 +16,9 @@ Muutin rakennetta hieman käyttiksen tekemisen helpottamiseksi.
 Ohjelma lataa nyt tekstitiedostosta labyrintin.
 Tällä hetkellä ainoa labyrintti on Pac-Manista tuttua muotoa.
 
-
+10.5
+Lisätty nimettyjen tasojen lataus.
+Tasoja voi nyt myös olla erikokoisia. Ikkunan koko vaihtuu labyrintin koon mukaan.
+Grafiikkaa piirretty.
 
 Seuraavan viikon aikana haluaisin saada pelin peruskulun kokolailla valmiiksi, jotta voin keskittyä pian itse polunetsintään.
