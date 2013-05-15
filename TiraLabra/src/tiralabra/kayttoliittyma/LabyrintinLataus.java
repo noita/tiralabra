@@ -10,11 +10,19 @@ import java.util.Scanner;
  * @author O
  */
 public class LabyrintinLataus {
+    /**
+     * Taulukko, johon labyrintti ladataan piirrettäväksi.
+     */
     String[][] ruudukko;
+    /**
+     * Taulukko, johon labyrintti ladataan käytettäväksi.
+     */
+    int[][] intRuudukko;
     
     public LabyrintinLataus(String tiedosto){
         int koko = lataaKentanKoko(tiedosto);
         ruudukko = new String[koko][koko];
+        intRuudukko = new int[koko][koko];
         /*for (int i=0; i<koko; i++){
             for (int j=0; j<koko; j++){
                 if( i==0 || j==0 ){
@@ -47,6 +55,7 @@ public class LabyrintinLataus {
                     y++;
                 }
                 tiili = lukija.nextInt();
+                intRuudukko[x][y] = tiili;
                 if (tiili == 0){
                     ruudukko[x][y] = "tyhjä";
                 } else if (tiili == 1){
@@ -54,7 +63,7 @@ public class LabyrintinLataus {
                 }
             }
         } catch (Exception e){
-            System.out.println("vitun kentät: "+e.toString());
+            //System.out.println("vitun kentät: "+e.toString());
         }
     }
     
@@ -87,11 +96,29 @@ public class LabyrintinLataus {
             return false;
         }
     }
-        
+       
+    /**
+     * Palauttaa halutun labyrintin ruudun siällön
+     * @param x vaaka-akseli koordinaatti
+     * @param y pystyakseli koordinaatti
+     * @return Taulun ruudukko haluttu arvo.
+     */
     public String getRuutu(int x, int y){
         return ruudukko[x][y];
     }
     
+    /**
+     * Palauttaa labyrintin int tauluna.
+     * @return Taulu intRuudukko.
+     */
+    public int[][] getRuudukko(){
+        return intRuudukko;
+    }
+    
+    /**
+     * Palauttaa labyrintin leveyden.
+     * @return Taulun ruudukko pituus.
+     */
     public int getKoko(){
         return ruudukko.length;
     }

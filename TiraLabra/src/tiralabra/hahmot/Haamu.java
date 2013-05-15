@@ -19,17 +19,21 @@ public class Haamu {
      * Haamun liikkeen suunta.
      */
     String suunta;
+    /**
+     * Haamun käyttämän liikealgoritmin nimi, toimii haamun nimenä.
+     */
     String algoritmi;
     
     public Haamu(int x, int y, String algo){
         sijaintiX = x;
         sijaintiY = y;
         algoritmi = algo;
+        suunta = "eioo"; //alussa suuntaa ei ole.
     }
     
     public void setSijainti(int x, int y){
-        sijaintiX = x;
-        sijaintiY = y;
+        sijaintiX = Math.max(x, 0);
+        sijaintiY = Math.max(0, y);
     }
     
     public int getX(){

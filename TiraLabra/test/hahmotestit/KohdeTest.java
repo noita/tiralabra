@@ -10,12 +10,14 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import tiralabra.hahmot.Kohde;
 
 /**
  *
  * @author O
  */
 public class KohdeTest {
+    Kohde kohde;
     
     public KohdeTest() {
     }
@@ -30,14 +32,19 @@ public class KohdeTest {
     
     @Before
     public void setUp() {
+        kohde = new Kohde(0,0);
     }
     
     @After
     public void tearDown() {
     }
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
+    
+    @Test
+    public void konstruktoriAsettaaOikein(){
+        kohde = new Kohde(2,3);
+        assertEquals(2,kohde.getX());
+        assertEquals(3,kohde.getY());
+    }
+    
+    
 }

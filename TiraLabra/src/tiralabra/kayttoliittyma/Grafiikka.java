@@ -9,7 +9,7 @@ import tiralabra.Peli;
 import tiralabra.hahmot.Haamu;
 
 /**
- * Labyrintin ja siinä olevien elemnttien piirtäminen.
+ * Labyrintin ja siinä olevien elementtien piirtäminen.
  *
  * @author O
  */
@@ -54,11 +54,14 @@ public class Grafiikka extends Canvas{
             } else if (algo.equals("Random")){
                 //g.drawImage(randomHaamu, 20*h.getX(), 20*h.getY(), this);
             } else if (algo.equals("Greedy")){
-                //g.drawImage(greedyHaamu, 20*h.getX(), 20*h.getY(), this);
+                g.drawImage(greedyHaamu, 20*h.getX(), 20*h.getY(), this);
             }
         }
+        this.setSize(20*lab.getKoko(), 20*lab.getKoko());
     }
-    
+    /**
+     * Lataa tiedostoista kuvat grafiikassa käytettäviksi.
+     */
     private void haeKuvat(){
         try {
             File wall = new File("kuvat/walltile.gif");
@@ -67,10 +70,11 @@ public class Grafiikka extends Canvas{
             astarHaamu = ImageIO.read(astar);
             File kohdekuva = new File("kuvat/kohde.gif");
             kohde = ImageIO.read(kohdekuva);
+            File greedy = new File("kuvat/greedyHaamu.gif");
+            greedyHaamu = ImageIO.read(greedy);
             
         } catch (Exception e){
-            System.out.println("vitun kuvat");
-            //jtn.
+            //System.out.println("vitun kuvat");
         }
     }
 }
