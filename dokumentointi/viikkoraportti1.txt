@@ -21,8 +21,6 @@ Lisätty nimettyjen tasojen lataus.
 Tasoja voi nyt myös olla erikokoisia. Ikkunan koko vaihtuu labyrintin koon mukaan.
 Grafiikkaa piirretty.
 
-Seuraavan viikon aikana haluaisin saada pelin peruskulun kokolailla valmiiksi, jotta voin keskittyä pian itse polunetsintään.
-
 13.5
 Käyttis edennyt hieman.
 Lisäsin perustestejä luokille.
@@ -30,4 +28,14 @@ Lisäsin perustestejä luokille.
 14.5
 Haamut on saatu nyt liikkumaan tasossa.
 Liike on satunnaista, kuitenkin niin, ettei haamu sahaa edestakaisin.
-En ole pahemmin käyttänyt threadeja, joten aikaa meni melko lailla.
+Ensimmäinen "algoritmi" on siis valmis.
+En ole pahemmin käyttänyt threadeja, joten aikaa meni niiden kanssa melko lailla.
+
+16.5
+Panosten asettaminen ja alustava tulosten lasku implementoitu. Ideana on
+määrittää lopulliset kertoimet empiiristen testien pohjalta. 
+Tämä siis sitten, kun kaikki algoritmit ovat valmiita.
+Käyttiksessä edelleen pieniä layout-ongelmia.
+
+
+Seuraavan viikonlopun aikana haluaisin saada pelin peruskulun kokolailla valmiiksi, jotta voin keskittyä pian itse polunetsintään. 
