@@ -20,7 +20,7 @@ public class Haamu {
      */
     String suunta;
     /**
-     * Haamun käyttämän liikealgoritmin nimi, toimii haamun nimenä.
+     * Haamun käyttämän liikealgoritmin nimi, toimii myös haamun nimenä.
      */
     String algoritmi;
     

@@ -46,5 +46,11 @@ public class KohdeTest {
         assertEquals(3,kohde.getY());
     }
     
+    @Test
+    public void setSopivaArvo(){
+        kohde.setSijainti(12, 0);
+        assertEquals(12,kohde.getX());
+        assertEquals(0,kohde.getY());
+    }
     
 }

@@ -10,9 +10,15 @@ import tiralabra.hahmot.Haamu;
 public class Random {
     
     public Random(){
-        //lol
+        //asdf
     }
-    
+    /**
+     * Arpoo satunnaisesti seuraavan askeleen haamulle, askel ei kuitenkaan voi
+     * olla takaisin tulosuuntaan, ellei haamu ole umpikujassa.
+     * @param haamu haamu, jolle askel pyydetään.
+     * @param lab labyrintti, jossa liikutaan.
+     * @return x,y-koordinaatit, joihin haamu siirretään.
+     */
     public int[] seuraavaAskel(Haamu haamu, int[][] lab){
         int[] uusiXY = new int[2];
         int hx = haamu.getX();
@@ -43,6 +49,7 @@ public class Random {
                 haamu.setSuunta("alas");
                 return uusiXY;
             }
+            
             //umpikujatilanteet:
             if (haamu.getSuunta().equals("ylös")){
                 if (lab[hx+1][hy]==1 && lab[hx-1][hy]==1 && lab[hx][hy+1]==1){

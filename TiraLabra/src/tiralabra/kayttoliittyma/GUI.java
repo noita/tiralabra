@@ -3,7 +3,6 @@ package tiralabra.kayttoliittyma;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.Locale;
 import tiralabra.Peli;
 
 /**
@@ -12,15 +11,30 @@ import tiralabra.Peli;
  * @author O
  */
 public class GUI {
+    /**
+     * Peli-ikkuna.
+     */
     JFrame ikkuna = new JFrame("asdf");
+    /**
+     * Pelitilanteen ilmoittava JLabel.
+     */
     JLabel tilanne = new JLabel("Place your bet!");
+    /**
+     * Pelaajan varat esittävä JLabel.
+     */
+    JLabel varat = new JLabel();
+    /**
+     * Nykyisen tason labyrintti.
+     */
     LabyrintinLataus labyrintti;
+    /**
+     * Peli, jonka kayttöliittymä on kyseessä.
+     */
     Peli peli;
     
     public GUI(Peli peli){
         this.labyrintti = peli.getLabyrintti();
         this.peli = peli;
-        
         
         ikkuna.setPreferredSize(new Dimension(500,700));
         ikkuna.setResizable(false);
@@ -34,19 +48,21 @@ public class GUI {
         ikkuna.pack();
         ikkuna.setVisible(true);
     }
-    
+    /**
+     * Luo ikkunaan haamun valintaan käytettävät nappulat.
+     */
     private void luoValinta(){
         ikkuna.setLayout(new BoxLayout(ikkuna.getContentPane(), BoxLayout.Y_AXIS));
         
         JButton valitseAstar = new JButton("Astar");
+        valitseAstar.addActionListener(new NappienKuuntelija(peli));
         JButton valitseGreedy = new JButton("Greedy");
+        valitseGreedy.addActionListener(new NappienKuuntelija(peli));
         JButton valitseRandom = new JButton("Random");
+        valitseRandom.addActionListener(new NappienKuuntelija(peli));
         JButton valitseJoku = new JButton("Joku");
+        valitseJoku.addActionListener(new NappienKuuntelija(peli));
         //kesken...
-        
-        tilanne.setAlignmentX(Component.CENTER_ALIGNMENT);
-        tilanne.setForeground(Color.white);
-
         
         Container napit = new Container();
         napit.setLayout(new FlowLayout(FlowLayout.CENTER,30,10));
@@ -56,8 +72,18 @@ public class GUI {
         napit.add(valitseRandom);
         napit.add(valitseJoku);
         
+        tilanne.setAlignmentX(Component.CENTER_ALIGNMENT);
+        tilanne.setForeground(Color.white);
+        
         ikkuna.add(tilanne);
+        
         ikkuna.add(napit);
+        
+        varat.setAlignmentX(Component.CENTER_ALIGNMENT);
+        varat.setForeground(Color.white);
+        
+        varat.setText("Current Funds: " + peli.vedonlyonti.getVarat());
+        ikkuna.add(varat);
     }
     
    /**
@@ -65,7 +91,6 @@ public class GUI {
     */
     private void luoValikko(){
         JMenuBar valikko = new JMenuBar();
-        valikko.setBorderPainted(false);
         
         JMenu peliValikko = new JMenu("Game");
         valikko.add(peliValikko);
@@ -100,6 +125,13 @@ public class GUI {
      */
     public void muutaTilanne(String viesti){
         tilanne.setText(viesti);
+    }
+    /**
+     * Päivittää varat esittävän JLabelin.
+     * @param luku nykyiset varat.
+     */
+    public void muutaVarat(int luku){
+        varat.setText("Current Funds: " + luku);
     }
     
     public JFrame getIkkuna(){

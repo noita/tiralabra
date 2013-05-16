@@ -37,11 +37,13 @@ public class Peli implements Runnable{
      * Piirrosgrafiikka.
      */
     public Grafiikka grafiikka;
+    public Vedonlyonti vedonlyonti;
     Liike liike;
     
     
     @Override
     public void run() {
+        vedonlyonti = new Vedonlyonti();
         //luodaan GUI
         grafiikka = new Grafiikka(this);
         kayttis = new GUI(this);
@@ -49,7 +51,6 @@ public class Peli implements Runnable{
         liike = new Liike(this);
         uusiKierros("pacman");
         //pyydetään panosten asetusta
-        //pyydaPanoksia();
         //kutsutaan liikettä, kunnes kierros loppuu
     }
     
@@ -78,7 +79,7 @@ public class Peli implements Runnable{
                 kohde = new Kohde(x,y);
             }
         }
-        aloitaKierros();
+        pyydaPanoksia();
     }
     /**
      * Kysyy ladattavan kentän nimeä käyttäjältä.
@@ -97,9 +98,11 @@ public class Peli implements Runnable{
      */
     public void pyydaPanoksia(){
         kayttis.muutaTilanne("Place your bet!");
+        
     }
     
     public void aloitaKierros(){
+        kayttis.muutaVarat(vedonlyonti.getVarat());
         if (liike.getState().equals(State.NEW)){
             liike.start();
         } 
@@ -107,6 +110,7 @@ public class Peli implements Runnable{
     
     public void lopetaKierros(String voittaja){
         kayttis.muutaTilanne("Congratulation! A Winnar is " + voittaja + "!");
+        
     }
     
     public ArrayList<Haamu> getHaamut(){

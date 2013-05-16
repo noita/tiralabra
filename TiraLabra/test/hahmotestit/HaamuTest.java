@@ -59,4 +59,10 @@ public class HaamuTest {
         assertEquals(4,haamu.getX());
         assertEquals(0,haamu.getY());
     }
+    
+    @Test
+    public void suuntaMuuttuuOikein(){
+        haamu.setSuunta("ylös");
+        assertEquals("ylös",haamu.getSuunta());
+    }
 }
