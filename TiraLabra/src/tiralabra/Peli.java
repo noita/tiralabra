@@ -4,6 +4,7 @@ package tiralabra;
 import java.lang.Thread.State;
 import java.util.*;
 import javax.swing.JOptionPane;
+import tiralabra.algoritmit.Astar;
 import tiralabra.hahmot.Haamu;
 import tiralabra.hahmot.Kohde;
 import tiralabra.hahmot.Liike;
@@ -36,8 +37,18 @@ public class Peli implements Runnable{
     /**
      * Piirrosgrafiikka.
      */
+    
+    public Astar astar;//tämä!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    
     public Grafiikka grafiikka;
+    /**
+     * Vedonlyonnin käsittely.
+     */
     public Vedonlyonti vedonlyonti;
+    /**
+     * Kertoo pelin tilan napeille.
+     */
+    public String pelinTila;
     Liike liike;
     
     
@@ -64,13 +75,21 @@ public class Peli implements Runnable{
         kayttis.muutaKokoa(labyrintti.getKoko());
         
         haamut.clear();
+        //haamut.add(new Haamu(1,1,"Random"));
+        //haamut.add(new Haamu(1,23,"Greedy"));
         haamut.add(new Haamu(1,1,"Astar"));
-        haamut.add(new Haamu(1,23,"Greedy"));
-        haamut.add(new Haamu(23,23,"Greedy"));
-        haamut.add(new Haamu(23,1,"Astar"));
+        //haamut.add(new Haamu(23,1,"Random"));
         //lisää haamuja...
         
         //luodaan kohde satunnaiseen tyhjään kohtaan labyrinttiä.
+        luoUusiKohde();
+        astar = new Astar(this);//tämä!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        pyydaPanoksia();
+    }
+    /**
+     * Lisää uuden kohteen satunnaiseen tyhjään kohtaan labyrintissä.
+     */
+    public void luoUusiKohde(){
         kohde = null;
         while (kohde==null){
             int x = new Random().nextInt(labyrintti.getKoko()-7)+3;
@@ -79,12 +98,13 @@ public class Peli implements Runnable{
                 kohde = new Kohde(x,y);
             }
         }
-        pyydaPanoksia();
     }
     /**
      * Kysyy ladattavan kentän nimeä käyttäjältä.
      */
     public void pyydaTasoa(){
+        lopetaKierros("none");
+        nollaaVedot();
         String taso = JOptionPane.showInputDialog(kayttis.getIkkuna(), "Which stage?");
         if (labyrintti.tarkistaOlemassaolo(taso)){
             uusiKierros(taso);
@@ -97,20 +117,53 @@ public class Peli implements Runnable{
      * Pyytää pelaajaa asettamaan panoksen.
      */
     public void pyydaPanoksia(){
+        pelinTila = "odottaa";
         kayttis.muutaTilanne("Place your bet!");
-        
     }
-    
+    /**
+     * Aloittaa kierroksen animoinnin.
+     */
     public void aloitaKierros(){
+        pelinTila = "käynnissä";
         kayttis.muutaVarat(vedonlyonti.getVarat());
+        //is funny joke ha ha ha 
+        if (vedonlyonti.getvalittuHaamu().equals("DUKE")){
+            kayttis.muutaTilanne("ALWAYS BET ON DUKE!");
+        } else {
+            kayttis.muutaTilanne("You bet on "+ vedonlyonti.getvalittuHaamu());
+        }
+
         if (liike.getState().equals(State.NEW)){
             liike.start();
-        } 
+        } else {
+            liike = new Liike(this);
+            liike.start();
+        }
+    }
+    /**
+     * Ilmoittaa kirreoksen loppuneen ja tarkistaa vedonlyonnin tuloksen.
+     * @param voittaja 
+     */
+    public void lopetaKierros(String voittaja){
+        liike.interrupt();
+        kayttis.muutaTilanne("The Winner is " + voittaja + "!");
+        vedonlyonti.tarkistaVoitto(voittaja);
     }
     
-    public void lopetaKierros(String voittaja){
-        kayttis.muutaTilanne("Congratulation! A Winnar is " + voittaja + "!");
-        
+    
+    /**
+     * Kutsuu GUI:ta esittämään kierroksen tuloksen.
+     */
+    public void tuloksenEsitys(){
+        kayttis.esitaTulos(vedonlyonti.getViimVoitto());
+    }
+
+    /**
+     * Nollaa vedonlyonnin tilanteen.
+     */
+    public void nollaaVedot(){
+        vedonlyonti.nollaaTilanne();
+        kayttis.muutaVarat(vedonlyonti.getVarat());
     }
     
     public ArrayList<Haamu> getHaamut(){

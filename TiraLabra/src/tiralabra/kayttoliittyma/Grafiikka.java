@@ -52,7 +52,7 @@ public class Grafiikka extends Canvas{
             if (algo.equals("Astar")){
                 g.drawImage(astarHaamu, 20*h.getX(), 20*h.getY(), this);
             } else if (algo.equals("Random")){
-                //g.drawImage(randomHaamu, 20*h.getX(), 20*h.getY(), this);
+                g.drawImage(randomHaamu, 20*h.getX(), 20*h.getY(), this);
             } else if (algo.equals("Greedy")){
                 g.drawImage(greedyHaamu, 20*h.getX(), 20*h.getY(), this);
             }
@@ -72,7 +72,8 @@ public class Grafiikka extends Canvas{
             kohde = ImageIO.read(kohdekuva);
             File greedy = new File("kuvat/greedyHaamu.gif");
             greedyHaamu = ImageIO.read(greedy);
-            
+            File random = new File("kuvat/randomHaamu.gif");
+            randomHaamu = ImageIO.read(random);
         } catch (Exception e){
             //System.out.println("vitun kuvat");
         }

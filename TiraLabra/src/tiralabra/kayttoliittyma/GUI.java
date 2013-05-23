@@ -60,7 +60,7 @@ public class GUI {
         valitseGreedy.addActionListener(new NappienKuuntelija(peli));
         JButton valitseRandom = new JButton("Random");
         valitseRandom.addActionListener(new NappienKuuntelija(peli));
-        JButton valitseJoku = new JButton("Joku");
+        JButton valitseJoku = new JButton("DUKE");
         valitseJoku.addActionListener(new NappienKuuntelija(peli));
         //kesken...
         
@@ -114,11 +114,28 @@ public class GUI {
     }
     
     /**
+     * Esittää kierroksen tuloksen.
+     * @param voitto voitettu summa.
+     */
+    public void esitaTulos(int voitto){
+        int x;
+        if (voitto == 0){
+            x = JOptionPane.showConfirmDialog(ikkuna, "You Lost 100$...\n New Round?", "Round Over", 2);
+        } else {
+            x = JOptionPane.showConfirmDialog(ikkuna, "You Won " + voitto + "$!\n New Round?", "Round Over", 2);
+        }
+        if (x == 0){
+            peli.uusiKierros("pacman");
+        }
+    }
+    
+    /**
      * Muuttaa ikkunan kokoa.
      */
     public void muutaKokoa(int koko){
         ikkuna.setSize(koko*20, koko*20+200);
     }
+    
     /**
      * Näyttää halutun viesti JLabelissa.
      * @param viesti Näytettävä teksti.

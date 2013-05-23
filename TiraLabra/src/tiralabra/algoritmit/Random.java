@@ -10,7 +10,6 @@ import tiralabra.hahmot.Haamu;
 public class Random {
     
     public Random(){
-        //asdf
     }
     /**
      * Arpoo satunnaisesti seuraavan askeleen haamulle, askel ei kuitenkaan voi

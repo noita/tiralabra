@@ -23,6 +23,8 @@ public class ValikonKuuntelija implements ActionListener{
         String valinta = ((JMenuItem)ae.getSource()).getText();
         if (valinta.equals("New Game")){
             //uusi peli
+            peli.lopetaKierros("none");
+            peli.nollaaVedot();
             peli.uusiKierros("pacman");
             peli.getGraf().repaint();
         } else if (valinta.equals("Quit Game")){

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="0" failures="0" hostname="kone.p-661hnu-f1" name="hahmotestit.HaamuTest" tests="4" time="0.098" timestamp="2013-05-16T11:57:58">
+<testsuite errors="0" failures="0" hostname="kone.p-661hnu-f1" name="hahmotestit.HaamuTest" tests="4" time="0.095" timestamp="2013-05-19T10:40:54">
   <properties>
     <property name="libs.jsp-compiler.javadoc" value="" />
     <property name="netbeans.autoupdate.country" value="US" />
@@ -62,7 +62,7 @@
     <property name="manifest.available+main.class" value="true" />
     <property name="libs.spring-webmvc3.0.maven-pom" value="" />
     <property name="libs.swing-layout.maven-pom" value="" />
-    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner hahmotestit.HaamuTest filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,/Users/O/tiralabra/TiraLabra/build/test/results/TEST-hahmotestit.HaamuTest.xml crashfile=/Users/O/tiralabra/TiraLabra/build/junitvmwatcher4838517064904064174.properties propsfile=/Users/O/tiralabra/TiraLabra/build/junit6361457958195774787.properties" />
+    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner hahmotestit.HaamuTest filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,/Users/O/tiralabra/TiraLabra/build/test/results/TEST-hahmotestit.HaamuTest.xml crashfile=/Users/O/tiralabra/TiraLabra/build/junitvmwatcher5588968741618206170.properties propsfile=/Users/O/tiralabra/TiraLabra/build/junit8038406461941817634.properties" />
     <property name="build.classes.dir" value="build/classes" />
     <property name="netbeans.accept_license_class" value="org.netbeans.license.AcceptLicense" />
     <property name="ant.file.TiraLabra" value="/Users/O/tiralabra/TiraLabra/build.xml" />
@@ -120,7 +120,7 @@
     <property name="libs.junit_4.maven-pom" value="" />
     <property name="mkdist.disabled" value="false" />
     <property name="javac.test.processorpath" value=":build/classes:/Applications/NetBeans/NetBeans 7.2.1.app/Contents/Resources/NetBeans/platform/modules/ext/junit-4.10.jar" />
-    <property name="netbeans.buildnumber" value="0.3.14" />
+    <property name="netbeans.buildnumber" value="0.3.15" />
     <property name="libs.JWSAntTasks.javadoc" value="" />
     <property name="build.generated.sources.dir" value="build/generated-sources" />
     <property name="libs.eclipselinkmodelgen.classpath" value="/Applications/NetBeans/NetBeans 7.2.1.app/Contents/Resources/NetBeans/java/modules/ext/eclipselink/org.eclipse.persistence.jpa.modelgen.processor-2.3.2.jar" />
@@ -268,6 +268,7 @@
     <property name="meta.inf.dir" value="src/META-INF" />
     <property name="javadoc.encoding.used" value="UTF-8" />
     <property name="dist.jar" value="dist/TiraLabra.jar" />
+    <property name="netbeans.automatic.build" value="true" />
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment" />
     <property name="ant.project.name" value="TiraLabra" />
     <property name="netbeans.hash.code" value="unique=NB_JAVA_WEBCOMMON_WEBEE_MOB_CND_GROOVY_PHP_GFMOD00f08d3fa-c592-4197-a297-eaa6121edcae_4d504997-1bf0-47e2-ac71-1c82a6eee94e" />
@@ -289,8 +290,8 @@
     <property name="jar.index" value="false" />
     <property name="libs.CopyLibs.maven-pom" value="" />
     <property name="libs.absolutelayout.javadoc" value="" />
-    <property name="libs.hibernate-persistence.maven-pom" value="" />
     <property name="libs.spring-framework300.javadoc" value="" />
+    <property name="libs.hibernate-persistence.maven-pom" value="" />
     <property name="java.specification.name" value="Java Platform API Specification" />
     <property name="libs.jakarta_slide_ant_webdav.maven-pom" value="" />
     <property name="do.archive+main.class.available" value="true" />
@@ -332,8 +333,8 @@
     <property name="line.separator" value="&#xa;" />
     <property name="libs.hibernate-persistence.src" value="" />
     <property name="java.specification.version" value="1.6" />
-    <property name="java.vm.info" value="mixed mode" />
     <property name="libs.jaxws21.maven-pom" value="" />
+    <property name="java.vm.info" value="mixed mode" />
     <property name="libs.cdc-ant-utils.javadoc" value="" />
     <property name="nb.junit.batch" value="true" />
     <property name="junit.forkmode" value="perTest" />
@@ -359,11 +360,11 @@
     <property name="libs.groovy-all.javadoc" value="" />
     <property name="do.archive+manifest.available+main.class" value="true" />
     <property name="testng.debug.mode" value="" />
-    <property name="javac.fork" value="false" />
     <property name="libs.groovy-all.classpath" value="/Applications/NetBeans/NetBeans 7.2.1.app/Contents/Resources/NetBeans/groovy/modules/ext/groovy-all.jar" />
+    <property name="javac.fork" value="false" />
     <property name="libs.sjmc-ant-utils.classpath" value="/Applications/NetBeans/NetBeans 7.2.1.app/Contents/Resources/NetBeans/mobility/modules/ext/org-netbeans-modules-j2me-cdc-project-sjmc.jar" />
-    <property name="libs.JMUnit4CLDC10.classpath" value="/Applications/NetBeans/NetBeans 7.2.1.app/Contents/Resources/NetBeans/mobility/modules/ext/jmunit4cldc10-1.2.1.jar" />
     <property name="java.awt.printerjob" value="apple.awt.CPrinterJob" />
+    <property name="libs.JMUnit4CLDC10.classpath" value="/Applications/NetBeans/NetBeans 7.2.1.app/Contents/Resources/NetBeans/mobility/modules/ext/jmunit4cldc10-1.2.1.jar" />
     <property name="default.javac.source" value="1.6" />
     <property name="debug-transport-by-os" value="dt_socket" />
     <property name="sun.jnu.encoding" value="MacRoman" />
@@ -381,19 +382,19 @@
     <property name="user.timezone" value="" />
     <property name="nb.junit.single" value="false" />
     <property name="do.jar" value="true" />
-    <property name="libs.ant-contrib.src" value="" />
     <property name="libs.javaee-endorsed-api-6.0.maven-pom" value="" />
+    <property name="libs.ant-contrib.src" value="" />
     <property name="netbeans.dirs" value="/Applications/NetBeans/NetBeans 7.2.1.app/Contents/Resources/NetBeans/nb:/Applications/NetBeans/NetBeans 7.2.1.app/Contents/Resources/NetBeans/ergonomics:/Applications/NetBeans/NetBeans 7.2.1.app/Contents/Resources/NetBeans/ide:/Applications/NetBeans/NetBeans 7.2.1.app/Contents/Resources/NetBeans/java:/Applications/NetBeans/NetBeans 7.2.1.app/Contents/Resources/NetBeans/apisupport:/Applications/NetBeans/NetBeans 7.2.1.app/Contents/Resources/NetBeans/webcommon:/Applications/NetBeans/NetBeans 7.2.1.app/Contents/Resources/NetBeans/websvccommon:/Applications/NetBeans/NetBeans 7.2.1.app/Contents/Resources/NetBeans/enterprise:/Applications/NetBeans/NetBeans 7.2.1.app/Contents/Resources/NetBeans/mobility:/Applications/NetBeans/NetBeans 7.2.1.app/Contents/Resources/NetBeans/profiler:/Applications/NetBeans/NetBeans 7.2.1.app/Contents/Resources/NetBeans/python:/Applications/NetBeans/NetBeans 7.2.1.app/Contents/Resources/NetBeans/php:/Applications/NetBeans/NetBeans 7.2.1.app/Contents/Resources/NetBeans/identity:/Applications/NetBeans/NetBeans 7.2.1.app/Contents/Resources/NetBeans/harness:/Applications/NetBeans/NetBeans 7.2.1.app/Contents/Resources/NetBeans/cnd:/Applications/NetBeans/NetBeans 7.2.1.app/Contents/Resources/NetBeans/dlight:/Applications/NetBeans/NetBeans 7.2.1.app/Contents/Resources/NetBeans/groovy:/Applications/NetBeans/NetBeans 7.2.1.app/Contents/Resources/NetBeans/extra:/Applications/NetBeans/NetBeans 7.2.1.app/Contents/Resources/NetBeans/javacard:/Applications/NetBeans/NetBeans 7.2.1.app/Contents/Resources/NetBeans/javafx:/Applications/NetBeans/NetBeans 7.2.1.app/Contents/Resources/NetBeans/tmcbeans:" />
     <property name="libs.jsf20.javadoc" value="/Applications/NetBeans/NetBeans 7.2.1.app/Contents/Resources/NetBeans/enterprise/docs/javaee6-doc-api.zip" />
     <property name="java.ext.dirs" value="/Library/Java/Extensions:/System/Library/Java/Extensions:/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/lib/ext" />
     <property name="libs.metro.src" value="" />
+    <property name="libs.semc-ant-utils.src" value="" />
     <property name="libs.savaje-ant-utils.maven-pom" value="" />
     <property name="endorsed.classpath" value="" />
-    <property name="libs.semc-ant-utils.src" value="" />
     <property name="libs.absolutelayout.classpath" value="/Applications/NetBeans/NetBeans 7.2.1.app/Contents/Resources/NetBeans/java/modules/ext/AbsoluteLayout.jar" />
     <property name="excludes" value="" />
-    <property name="libs.restlib.maven-pom" value="" />
     <property name="libs.metro.classpath" value="/Applications/NetBeans/NetBeans 7.2.1.app/Contents/Resources/NetBeans/ide/modules/ext/jaxb/activation.jar:/Applications/NetBeans/NetBeans 7.2.1.app/Contents/Resources/NetBeans/enterprise/modules/ext/metro/webservices-api.jar:/Applications/NetBeans/NetBeans 7.2.1.app/Contents/Resources/NetBeans/enterprise/modules/ext/metro/webservices-extra-api.jar:/Applications/NetBeans/NetBeans 7.2.1.app/Contents/Resources/NetBeans/enterprise/modules/ext/metro/webservices-extra.jar:/Applications/NetBeans/NetBeans 7.2.1.app/Contents/Resources/NetBeans/enterprise/modules/ext/metro/webservices-rt.jar:/Applications/NetBeans/NetBeans 7.2.1.app/Contents/Resources/NetBeans/enterprise/modules/ext/metro/webservices-tools.jar" />
+    <property name="libs.restlib.maven-pom" value="" />
     <property name="apple.laf.useScreenMenuBar" value="true" />
     <property name="java.class.path" value="/Users/O/tiralabra/TiraLabra/build/classes:/Applications/NetBeans/NetBeans 7.2.1.app/Contents/Resources/NetBeans/platform/modules/ext/junit-4.10.jar:/Users/O/tiralabra/TiraLabra/build/test/classes:/Applications/NetBeans/NetBeans 7.2.1.app/Contents/Resources/NetBeans/java/ant/lib/ant-launcher.jar:/Applications/NetBeans/NetBeans 7.2.1.app/Contents/Resources/NetBeans/java/ant/lib/ant.jar:/Applications/NetBeans/NetBeans 7.2.1.app/Contents/Resources/NetBeans/java/ant/lib/ant-junit.jar:/Applications/NetBeans/NetBeans 7.2.1.app/Contents/Resources/NetBeans/java/ant/lib/ant-junit4.jar" />
     <property name="do.mkdist" value="true" />
@@ -423,11 +424,11 @@
     <property name="libs.jsf12.maven-pom" value="" />
     <property name="jnlp.signing" value="" />
     <property name="libs.junit.src" value="" />
-    <property name="annotation.processing.source.output" value="build/generated-sources/ap-source-output" />
     <property name="jnlp.signed" value="false" />
+    <property name="annotation.processing.source.output" value="build/generated-sources/ap-source-output" />
     <property name="main.class" value="tiralabra.TiraLabra" />
-    <property name="libs.CopyLibs.src" value="" />
     <property name="build.dir" value="build" />
+    <property name="libs.CopyLibs.src" value="" />
     <property name="libs.jsp-compilation.classpath" value="/Applications/NetBeans/NetBeans 7.2.1.app/Contents/Resources/NetBeans/java/ant/lib/ant.jar:/Applications/NetBeans/NetBeans 7.2.1.app/Contents/Resources/NetBeans/enterprise/modules/ext/servlet3.0-jsp2.2-api.jar:/Applications/NetBeans/NetBeans 7.2.1.app/Contents/Resources/NetBeans/enterprise/modules/ext/glassfish-jspparser-3.0.jar:/Applications/NetBeans/NetBeans 7.2.1.app/Contents/Resources/NetBeans/enterprise/modules/ext/jsf-2_1/jsf-api.jar:/Applications/NetBeans/NetBeans 7.2.1.app/Contents/Resources/NetBeans/enterprise/modules/ext/jstl.jar:/Applications/NetBeans/NetBeans 7.2.1.app/Contents/Resources/NetBeans/java/ant/lib/ant-launcher.jar" />
     <property name="ant.file.TiraLabra-impl" value="/Users/O/tiralabra/TiraLabra/nbproject/build-impl.xml" />
     <property name="ant.version" value="Apache Ant(TM) version 1.8.3 compiled on February 26 2012" />
@@ -438,7 +439,7 @@
     <property name="platform.active" value="default_platform" />
     <property name="awt.toolkit" value="apple.awt.CToolkit" />
   </properties>
-  <testcase classname="hahmotestit.HaamuTest" name="konstruktoriAsettaaSijainninOikein" time="0.0030" />
+  <testcase classname="hahmotestit.HaamuTest" name="konstruktoriAsettaaSijainninOikein" time="0.0020" />
   <testcase classname="hahmotestit.HaamuTest" name="konstruktoriAsettaaAlgonOikein" time="0.0" />
   <testcase classname="hahmotestit.HaamuTest" name="sijaintiMuuttuuOikein" time="0.0" />
   <testcase classname="hahmotestit.HaamuTest" name="suuntaMuuttuuOikein" time="0.0" />

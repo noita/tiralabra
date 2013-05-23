@@ -2,6 +2,7 @@
 package tiralabra.hahmot;
 
 import tiralabra.Peli;
+import tiralabra.algoritmit.Greedy;
 import tiralabra.algoritmit.Random;
 
 
@@ -13,7 +14,7 @@ import tiralabra.algoritmit.Random;
 public class Liike extends Thread{
     Peli peli;
     Random rand = new Random();
-    //private volatile Thread liike;
+    int[][] labyrintti;
     
     
     public Liike(Peli peli){
@@ -29,27 +30,36 @@ public class Liike extends Thread{
                 if (h.sijaintiX == peli.getKohde().sijaintiX && h.sijaintiY == peli.getKohde().sijaintiY){
                     //peli loppui.
                     peli.lopetaKierros(h.getAlgo());
-                    //this.interrupt();
+                    this.interrupt();
                 }
             }
             try {
-                this.sleep(1000);
+                this.sleep(500);
             } catch (InterruptedException e){
                 //häh
+                peli.tuloksenEsitys();
                 break;
             }
         }
     }
     
+    /**
+     * Siirtää haamu askeleen algoritmin mukaan.
+     * @param haamu Liikutettava haamu.
+     */
     public void liikutaHaamua(Haamu haamu){
-        int[][] labyrintti = peli.getLabyrintti().getRuudukko();
-        int[] xy = rand.seuraavaAskel(haamu, labyrintti);
-        //System.out.println(xy[0]+","+xy[1]);//debuggggg
+        labyrintti = peli.getLabyrintti().getRuudukko();
+        int [] xy = new int[2];
+        if (haamu.getAlgo().equals("Random")){
+            xy = rand.seuraavaAskel(haamu, labyrintti);
+        } else if (haamu.getAlgo().equals("Astar")){
+            xy = peli.astar.seuraavaAskel(haamu);
+        } else if (haamu.getAlgo().equals("Greedy")){
+            //liikutetaan Greedyllä myöhemmin
+            xy[0] = haamu.getX();
+            xy[1] = haamu.getY();
+        }
         haamu.setSijainti(xy[0], xy[1]);
-    }
-    
-    public void lopeta(){
-        //liike = null;
     }
     
     //public void liikutaKohdetta(Kohde kohde){

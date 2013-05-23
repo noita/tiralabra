@@ -10,12 +10,16 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import tiralabra.Peli;
+import tiralabra.algoritmit.Astar;
 
 /**
  *
  * @author O
  */
 public class AstarTest {
+    Peli peli;
+    Astar astar;
     
     public AstarTest() {
     }
@@ -30,7 +34,12 @@ public class AstarTest {
     
     @Before
     public void setUp() {
+        peli = new Peli();
+        astar = new Astar(peli);
+        
     }
+    
+
     
     @After
     public void tearDown() {

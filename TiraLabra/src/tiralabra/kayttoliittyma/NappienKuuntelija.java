@@ -6,6 +6,7 @@ package tiralabra.kayttoliittyma;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JButton;
 import tiralabra.Peli;
 
 /**
@@ -21,10 +22,12 @@ public class NappienKuuntelija implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent ae) {
-        String nappi = ae.getSource().toString();
-        
-        peli.vedonlyonti.asetaPanos(nappi);
-        peli.aloitaKierros();
+        JButton painettu = ((JButton)ae.getSource());
+        String valittu = painettu.getText();
+        if (peli.pelinTila.equals("odottaa")){
+            peli.vedonlyonti.asetaPanos(valittu);
+            peli.aloitaKierros();
+        }
     }
     
 }

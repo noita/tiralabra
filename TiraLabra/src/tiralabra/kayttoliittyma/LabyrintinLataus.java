@@ -55,7 +55,7 @@ public class LabyrintinLataus {
                     y++;
                 }
                 tiili = lukija.nextInt();
-                intRuudukko[x][y] = tiili;
+                intRuudukko[y][x] = tiili;
                 if (tiili == 0){
                     ruudukko[x][y] = "tyhjä";
                 } else if (tiili == 1){
