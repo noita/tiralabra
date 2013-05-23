@@ -1,0 +1,23 @@
+17.5
+Pelinkulku edennyt.
+Pieniä bugeja korjattu.
+Peli näyttäisi nyt toimivan kokolailla niinkuin pitää, 
+seuraavaksi itse aiheeseen.
+
+19.5
+Tason päättyminen ja tuloksen esittäminen lisätty.
+
+21.5
+Bugien korjausta, grafiikkaa. Aloitettu ensimmäiset polkualgoritmit.
+
+23.5 
+Jatkettu A*:in kirjoittamista.
+Huomasin vasta muutaman tunnin työn jälkeen, että olin aiemmin
+tallentanut labyrintin tauluun toisinpäin (siis x ja y päinvastoin)
+kuin sitä yritin sieltä lukea. Kaikki muut kohdat ehdinkin tarkistaa
+viiteentoista kertaan. Algoritmi näyttäisi nyt löytävän lyhimmän reitin 
+toivotulla tavalla. Testausta en ole vielä ehtinyt suorittaa.
+
+Tällä viikolla eteneminen on ollut hieman tahmeaa, toinen kiireisempi
+projekti on vienyt valtaosan ajasta. Se on kuitenkin nyt pois alta, ja
+peli itse algoritmeja vaille valmis.
