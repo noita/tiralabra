@@ -59,6 +59,7 @@ public class Grafiikka extends Canvas{
         }
         this.setSize(20*lab.getKoko(), 20*lab.getKoko());
     }
+    
     /**
      * Lataa tiedostoista kuvat grafiikassa käytettäviksi.
      */

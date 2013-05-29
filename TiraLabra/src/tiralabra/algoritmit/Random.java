@@ -27,22 +27,22 @@ public class Random {
         //arvotaan uusi suunta:
         while (true){
             int luku = new java.util.Random().nextInt(4);
-            if (luku == 0 && lab[hx+1][hy]==0 && !suunta.equals("vasen")){
+            if (luku == 0 && lab[hy][hx+1]==0 && !suunta.equals("vasen")){
                 uusiXY[0] = hx+1;
                 uusiXY[1] = hy;
                 haamu.setSuunta("oikea");
                 return uusiXY;
-            } else if (luku == 1 && lab[hx][hy+1]==0 && !suunta.equals("alas")){
+            } else if (luku == 1 && lab[hy+1][hx]==0 && !suunta.equals("alas")){
                 uusiXY[0] = hx;
                 uusiXY[1] = hy+1;
                 haamu.setSuunta("ylös");
                 return uusiXY;
-            } else if (luku == 2 && lab[hx-1][hy]==0 && !suunta.equals("oikea")){
+            } else if (luku == 2 && lab[hy][hx-1]==0 && !suunta.equals("oikea")){
                 uusiXY[0] = hx-1;
                 uusiXY[1] = hy;
                 haamu.setSuunta("vasen");
                 return uusiXY;
-            } else if (luku == 3 && lab[hx][hy-1]==0 && !suunta.equals("ylös")){
+            } else if (luku == 3 && lab[hy-1][hx]==0 && !suunta.equals("ylös")){
                 uusiXY[0] = hx;
                 uusiXY[1] = hy-1;
                 haamu.setSuunta("alas");
@@ -51,28 +51,28 @@ public class Random {
             
             //umpikujatilanteet:
             if (haamu.getSuunta().equals("ylös")){
-                if (lab[hx+1][hy]==1 && lab[hx-1][hy]==1 && lab[hx][hy+1]==1){
+                if (lab[hy][hx+1]==1 && lab[hy][hx-1]==1 && lab[hy+1][hx]==1){
                     uusiXY[0] = hx;
                     uusiXY[1] = hy-1;
                     haamu.setSuunta("alas");
                     return uusiXY;
                 }
             } else if (haamu.getSuunta().equals("alas")){
-                if (lab[hx+1][hy]==1 && lab[hx-1][hy]==1 && lab[hx][hy-1]==1){
+                if (lab[hy][hx+1]==1 && lab[hy][hx-1]==1 && lab[hy-1][hx]==1){
                     uusiXY[0] = hx;
                     uusiXY[1] = hy+1;
                     haamu.setSuunta("ylös");
                     return uusiXY;
                 }
             } else if (haamu.getSuunta().equals("vasen")){
-                if (lab[hx-1][hy]==1 && lab[hx][hy-1]==1 && lab[hx][hy+1]==1){
+                if (lab[hy][hx-1]==1 && lab[hy-1][hx]==1 && lab[hy+1][hx]==1){
                     uusiXY[0] = hx+1;
                     uusiXY[1] = hy;
                     haamu.setSuunta("oikea");
                     return uusiXY;
                 }
             } else if (haamu.getSuunta().equals("oikea")){
-                if (lab[hx+1][hy]==1 && lab[hx][hy-1]==1 && lab[hx][hy+1]==1){
+                if (lab[hy][hx+1]==1 && lab[hy-1][hx]==1 && lab[hy+1][hx]==1){
                     uusiXY[0] = hx-1;
                     uusiXY[1] = hy;
                     haamu.setSuunta("vasen");

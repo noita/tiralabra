@@ -1,61 +1,101 @@
 
 package tiralabra.algoritmit;
 
-import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.PriorityQueue;
 import java.util.Queue;
-import java.util.Stack;
-import tiralabra.Peli;
+import tiralabra.Ruutu;
 import tiralabra.hahmot.Haamu;
+import tiralabra.hahmot.Kohde;
+import tiralabra.tietorakenteet.OmaJono;
+import tiralabra.tietorakenteet.OmaPino;
 
 /**
  * A*-polunetsintäalgoritmi.
  * @author O
  */
 public class Astar {
-    Peli peli;
+    /**
+     * Pelin nykyinen labyrintti
+     */
     int[][] labyrintti;
+    /**
+     * labyrintti Ruutuina
+     */
+    Ruutu[][] lab;
+    /**
+     * Lähtöruudun koordinaatti
+     */
     int lahtoX;
+    /**
+     * Lähtöruudun koordinaatti
+     */
     int lahtoY;
+    /**
+     * Kohteen koordinaatti
+     */
     int maaliX;
+    /**
+     * Kohteen koordinaatti
+     */
     int maaliY;
+    /**
+     * Taulu etäisyysarvioille
+     */
     int[][] alkuun;
+    /**
+     * Taulu heurestiikkafunktion arvoille
+     */
     int[][] loppuun;
+    /**
+     * Taulu, joka kertoo onko solmu jo käsitelty
+     */
     boolean[][] kasitellyt;
+    /**
+     * Taulu, joka kertoo mistä ruutuun on tultu
+     */
     String[][] reitti;
-    //korvataan omilla?
-    Stack<String> polku = new Stack<String>();
-    Queue<Integer> seuraavaX = new ArrayDeque<Integer>();
-    Queue<Integer> seuraavaY = new ArrayDeque<Integer>();
+    /**
+     * Pino, josta luetaan polku maalin ja lähdön välillä
+     */
+    OmaPino polku = new OmaPino();
+    Queue<Ruutu> seuraava = new PriorityQueue<Ruutu>();
+    //implementointi kesken!!
+    //OmaJono seuraava = new OmaJono();
+    public int polunPituus;
     
     
-    public Astar(Peli peli){
-        this.peli = peli;
-        labyrintti = peli.getLabyrintti().getRuudukko();
-        maaliX = peli.getKohde().getY();
-        maaliY = peli.getKohde().getX();
-        for (Haamu h : peli.getHaamut()){
+    public Astar(int[][] lab, Kohde kohde, ArrayList<Haamu> haamut){
+        labyrintti = lab;
+        maaliX = kohde.getY();
+        maaliY = kohde.getX();
+        for (Haamu h : haamut){
             if (h.getAlgo().equals("Astar")){
                 lahtoX = h.getY();
                 lahtoY = h.getX();
                 break;
             }
         }
-        etsiReitti();
+        //etsiReitti();
     }
     
+    /**
+     * Etsii reitin lähtöruudusta maaliruutuun.
+     */
     public final void etsiReitti(){
         alustaAputaulut();
         
-        seuraavaX.add(lahtoX);
-        seuraavaY.add(lahtoY);
-
+        seuraava.clear();
+        //lisätään aloitusruutu käsiteltäväksi
+        seuraava.add(lab[lahtoX][lahtoY]);
+        //jatketaan käsittelyä, kunnes saavutaan maaliin
         while (!kasitellyt[maaliX][maaliY]){
-            kasitteleSolmu(seuraavaX.poll(), seuraavaY.poll());
+            kasitteleRuutu(seuraava.poll());
         }
-        
+
         luoReitti();
     }
+    
     /**
      * Alustaa algoritmin käyttämät aputaulut oletusarvoihin. 
      */
@@ -66,108 +106,112 @@ public class Astar {
         loppuun = new int[labyrintti.length][labyrintti.length];
         kasitellyt = new boolean[labyrintti.length][labyrintti.length];
         reitti = new String[labyrintti.length][labyrintti.length];
+        lab = new Ruutu[labyrintti.length][labyrintti.length];
         
         for (int i = 0; i<kasitellyt.length; i++){
             for (int j = 0; j<kasitellyt.length; j++){
+                lab[i][j] = new Ruutu(iso,i,j);
+                reitti[i][j] = "eiole";
                 kasitellyt[i][j] = false;
+                if (labyrintti[i][j]==1){
+                    //seinät merkitään käsitellyiksi, jolloin niitä
+                    //ei voida käyttää polulla.
+                    kasitellyt[i][j] = true;
+                }
                 alkuun[i][j] = iso;
             }
         }
+        //init. single source:
+        lab[lahtoX][lahtoY].setArvo(0);
         alkuun[lahtoX][lahtoY] = 0;
         reitti[lahtoX][lahtoY] = "lähtö";
         loppuun[lahtoX][lahtoY] = Math.abs(maaliX-lahtoX)+Math.abs(maaliY-lahtoY);
     }
+    
     /**
-     * Käsitteelee annetun solmun.
-     * @param x Solmun x-koordinaatti.
-     * @param y solmun y-koordinaatti.
+     * Käsittelee annetun ruudun.
+     * @param ruutu käsiteltävä ruutu.
      */
-    public void kasitteleSolmu(int x, int y){
-        //System.out.println(x+","+y);
-        //merkitään solmu käsitellyksi:
+    public void kasitteleRuutu(Ruutu ruutu){
+        int x = ruutu.getX();
+        int y = ruutu.getY();
+        
+        //merkitään käsitellyksi;
         kasitellyt[x][y] = true;
-        int pieninEtaisyys = 999999;//random iso.
         
-        //päivitetään naapurit; etäisyys alku- ja loppuruudusta ja mistä suunnasta on tultu:
-        if(labyrintti[x+1][y]!=1 && !kasitellyt[x+1][y]){
-            alkuun[x+1][y] = alkuun[x][y]+1;
-            loppuun[x+1][y] = Math.abs(maaliX-(x+1))+Math.abs(maaliY-y);
-            reitti[x+1][y] = "ylös";
-            if (alkuun[x+1][y]+loppuun[x+1][y]<pieninEtaisyys){
-                pieninEtaisyys = alkuun[x+1][y]+loppuun[x+1][y];
-            }
+        //päivitetään naapurit ja lisätään jonoon:
+        if(!kasitellyt[x+1][y] && alkuun[x][y]+1<=alkuun[x+1][y]){
+            //alkuun[x][y]+1<alkuun[x+1][y]
+            paivitaRuutu(x+1,y,alkuun[x][y],"ylös");
+            lisaaRuutu(x+1,y);
         }
-        if(labyrintti[x-1][y]!=1 && !kasitellyt[x-1][y]){
-            alkuun[x-1][y] = alkuun[x][y]+1;
-            loppuun[x-1][y] = Math.abs(maaliX-(x-1))+Math.abs(maaliY-y);
-            reitti[x-1][y] = "alas";
-            if (alkuun[x-1][y]+loppuun[x-1][y]<pieninEtaisyys){
-                pieninEtaisyys = alkuun[x-1][y]+loppuun[x-1][y];
-            }
+        if(!kasitellyt[x-1][y]&& alkuun[x][y]+1<=alkuun[x-1][y]){
+            paivitaRuutu(x-1,y,alkuun[x][y],"alas");
+            lisaaRuutu(x-1,y);
         }
-        if(labyrintti[x][y+1]!=1 && !kasitellyt[x][y+1]){
-            alkuun[x][y+1] = alkuun[x][y]+1;
-            loppuun[x][y+1] = Math.abs(maaliX-x)+Math.abs(maaliY-(y+1));
-            reitti[x][y+1] = "vasen";
-            if (alkuun[x][y+1]+loppuun[x][y+1]<pieninEtaisyys){
-                pieninEtaisyys = alkuun[x][y+1]+loppuun[x][y+1];
-            }
+        if(!kasitellyt[x][y+1]&& alkuun[x][y]+1<=alkuun[x][y+1]){
+            paivitaRuutu(x,y+1,alkuun[x][y],"vasen");
+            lisaaRuutu(x,y+1);
         }
-        if(labyrintti[x][y-1]!=1 && !kasitellyt[x][y-1]){
-            alkuun[x][y-1] = alkuun[x][y]+1;
-            loppuun[x][y-1] = Math.abs(maaliX-x)+Math.abs(maaliY-(y-1));
-            reitti[x][y-1] = "oikea";
-            if (alkuun[x][y-1]+loppuun[x][y-1]<pieninEtaisyys){
-                pieninEtaisyys = alkuun[x][y-1]+loppuun[x][y-1];
-            }
+        if(!kasitellyt[x][y-1]&& alkuun[x][y]+1<=alkuun[x][y-1]){
+            paivitaRuutu(x,y-1,alkuun[x][y],"oikea");
+            lisaaRuutu(x,y-1);
         }
-        
-        //lisätään lähin/lähimmät käsiteltäviksi:
-        if (pieninEtaisyys==alkuun[x+1][y]+loppuun[x+1][y] && !kasitellyt[x+1][y]&& labyrintti[x+1][y]==0){
-            seuraavaX.add(x+1);
-            seuraavaY.add(y);
-        }
-        if (pieninEtaisyys==alkuun[x-1][y]+loppuun[x-1][y] && !kasitellyt[x-1][y]&& labyrintti[x-1][y]==0){
-            seuraavaX.add(x-1);
-            seuraavaY.add(y);
-        }
-        if (pieninEtaisyys==alkuun[x][y+1]+loppuun[x][y+1] && !kasitellyt[x][y+1]&& labyrintti[x][y+1]==0){
-            seuraavaX.add(x);
-            seuraavaY.add(y+1);
-        }
-        if (pieninEtaisyys==alkuun[x][y-1]+loppuun[x][y-1] && !kasitellyt[x][y-1]&& labyrintti[x][y-1]==0){
-            seuraavaX.add(x);
-            seuraavaY.add(y-1);
-        }        
     }
     
+    /**
+     * Päivittää ruudun etäisyysarviot ja 'reitti'-arvon.
+     * @param x ruudun x-koordinaatti
+     * @param y ruudun y-koordinaatti
+     * @param pituus polun tähänastinen pituus
+     * @param suunta suunta, josta ruutuun on saavuttu
+     */
+    public void paivitaRuutu(int x, int y, int pituus, String suunta){
+        alkuun[x][y] = pituus+1;
+        loppuun[x][y] = Math.abs(maaliX-x)+Math.abs(maaliY-y);
+        reitti[x][y] = suunta;
+        lab[x][y].setArvo(Math.min(alkuun[x][y]+loppuun[x][y], lab[x][y].getArvo()));
+    }
+    
+    /**
+     * Lisää ruudun jonoon käsiteltäväksi.
+     * @param x ruudun x-koordinaatti
+     * @param y ruudun y-koordinaatti 
+     */
+    public void lisaaRuutu(int x, int y){
+        seuraava.add(lab[x][y]);
+    }
+    
+    
+    /**
+     * Luo reitin lähdöstä maaliruutuun lukemalla ruutujen 'reitti'-arvoja
+     * maalista lähtöön.
+     */
     public void luoReitti(){
         
-        //debuugggggggggggggggggg
-        /*for (int i = 0; i<kasitellyt.length; i++){
+        for (int i = 0; i<kasitellyt.length; i++){
             for (int j = 0; j<kasitellyt.length; j++){
-                if (reitti[i][j]==null){
-                    System.out.print("n");
-                } else if (reitti[i][j].equals("vasen")){
-                    System.out.print("V");
-                } else if(reitti[i][j].equals("oikea")){
-                    System.out.print("O");
+                if (reitti[i][j].equals("alas")){
+                    System.out.print("a");
                 } else if (reitti[i][j].equals("ylös")){
-                    System.out.print("Y");
+                    System.out.print("y");
+                } else if (reitti[i][j].equals("vasen")){
+                    System.out.print("v");
+                } else if (reitti[i][j].equals("oikea")) {
+                    System.out.print("o");
                 } else {
-                    System.out.print("A");
-                } 
-            }
+                    System.out.print("X");
+                }
+                }
             System.out.println("");
-        }*/
-        //debuggggggg
+        }
         
+        polku.tyhjenna();
         int x = maaliX;
         int y = maaliY;
         while (!reitti[x][y].equals("lähtö")){
-            //System.out.println(reitti[x][y]);
             polku.push(reitti[x][y]);
- 
+            
             if (reitti[x][y].equals("ylös")){
                 x--;
             } else if (reitti[x][y].equals("alas")){
@@ -178,9 +222,15 @@ public class Astar {
                 y++;
             }
         }
-        //doopdedoop
+        //otetaan muistiin polun pituus(testausta varten).
+        polunPituus = polku.koko();
     }
-    
+
+    /**
+     * Palauttaa seuraavan ruudun, johon siirrytään.
+     * @param h Haamu, jota siirretään.
+     * @return x-y-koordinaatit, joihin haamu siirretään.
+     */
     public int[] seuraavaAskel(Haamu h){
         int[] askel = new int[2];
         String suunta = polku.pop();
@@ -200,7 +250,6 @@ public class Astar {
             askel[0] = h.getX()+1;
             askel[1] = h.getY();
         }
-        
         return askel;
     }
 }

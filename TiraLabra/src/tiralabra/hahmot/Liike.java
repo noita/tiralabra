@@ -25,6 +25,7 @@ public class Liike extends Thread{
     public void run(){
         while (true){
             for (Haamu h : peli.getHaamut()){
+                //liikutetaan haamuja
                 liikutaHaamua(h);
                 peli.grafiikka.repaint();
                 if (h.sijaintiX == peli.getKohde().sijaintiX && h.sijaintiY == peli.getKohde().sijaintiY){
@@ -37,7 +38,9 @@ public class Liike extends Thread{
                 this.sleep(500);
             } catch (InterruptedException e){
                 //häh
-                peli.tuloksenEsitys();
+                if (!peli.pelinTila.equals("loppu")){
+                    peli.tuloksenEsitys();
+                }
                 break;
             }
         }
@@ -61,9 +64,5 @@ public class Liike extends Thread{
         }
         haamu.setSijainti(xy[0], xy[1]);
     }
-    
-    //public void liikutaKohdetta(Kohde kohde){
-    //
-    //}
     
 }

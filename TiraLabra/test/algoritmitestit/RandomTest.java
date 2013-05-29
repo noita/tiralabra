@@ -71,6 +71,6 @@ public class RandomTest {
         haamu.setSijainti(3, 3);
         haamu.setSuunta("oikea");
         int[] luvut = rand.seuraavaAskel(haamu, lab);
-        assertTrue(luvut[0]==3&&luvut[1]==2);
+        assertTrue(luvut[0]==2&&luvut[1]==3);
     }
 }

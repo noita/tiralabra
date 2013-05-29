@@ -36,7 +36,7 @@ public class GUI {
         this.labyrintti = peli.getLabyrintti();
         this.peli = peli;
         
-        ikkuna.setPreferredSize(new Dimension(500,700));
+        ikkuna.setPreferredSize(new Dimension(500,675));
         ikkuna.setResizable(false);
         ikkuna.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         ikkuna.setBackground(Color.BLACK);
@@ -125,7 +125,7 @@ public class GUI {
             x = JOptionPane.showConfirmDialog(ikkuna, "You Won " + voitto + "$!\n New Round?", "Round Over", 2);
         }
         if (x == 0){
-            peli.uusiKierros("pacman");
+            peli.uusiKierros(peli.nykyinenKentta);
         }
     }
     
@@ -133,7 +133,7 @@ public class GUI {
      * Muuttaa ikkunan kokoa.
      */
     public void muutaKokoa(int koko){
-        ikkuna.setSize(koko*20, koko*20+200);
+        ikkuna.setSize(koko*20, koko*20+175);
     }
     
     /**

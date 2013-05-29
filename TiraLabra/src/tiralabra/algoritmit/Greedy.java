@@ -4,13 +4,15 @@ package tiralabra.algoritmit;
 import java.util.*;
 import tiralabra.Peli;
 import tiralabra.hahmot.Haamu;
+import tiralabra.hahmot.Kohde;
 
 /**
  * Yksinkertainen ahne algoritmi, joka etsii lyhintä polkua kohteeseen. 
  * @author O
  */
 public class Greedy {
-    Peli peli;
+    int[][] labyrintti;
+    Kohde kohde;
     /**
      * Lähtöruudun x-koordinaatti.
      */
@@ -21,64 +23,25 @@ public class Greedy {
     int lahtoY;
     Queue<String> jono;//korvataan omalla?
     
-    public Greedy(Peli peli, int x, int y){
-        this.peli = peli;
-        lahtoX = x;
-        lahtoY = y;
+    public Greedy(int[][] lab, Kohde kohde, int lahtoX, int lahtoY){
+        this.lahtoX = lahtoX;
+        this.lahtoY = lahtoY;
+        this.kohde = kohde;
+        labyrintti = lab;
         jono = new ArrayDeque<String>();
-        etsiReitti(peli.getLabyrintti().getRuudukko(), peli.getKohde().getX(), peli.getKohde().getY());
+        etsiReitti();
     }
+    
     /**
      * Etsii reitin kohteeseen labyrintissä.
      * @param lab labyrintti kaksiulotteisena tauluna
      * @param x kohteen x-sijainti
      * @param y kohteen y-sijainti
      */
-    public final void etsiReitti(int[][] lab, int x, int y){
-        int nytX = lahtoX;
-        int nytY = lahtoY;
-        int lol = 200;
-        
-        while (nytX!=x && nytY!=y && lol>0){
-            lol--;
-            if(Math.abs(nytY-y)>=Math.abs(nytX-x)){
-                if(nytY<y){
-                    while (lab[nytX+1][nytY]==1 && lab[nytX-1][nytY]==1 && lab[nytX][nytY+1]!=1){
-                        jono.add("alas");
-                        nytY++;
-                        if (nytX==x && nytY==y){
-                            break;
-                        }
-                    }
-                } else {
-                    while (lab[nytX+1][nytY]==1 && lab[nytX-1][nytY]==1 && lab[nytX][nytY-1]!=1){
-                        jono.add("ylös");
-                        nytY--;
-                        if (nytX==x && nytY==y){
-                            break;
-                        }
-                    }
-                }
-            } else {
-                if (nytX<x){
-                    while (lab[nytX][nytY+1]==1 && lab[nytX][nytY-1]==1 && lab[nytX+1][nytY]!=1){
-                        jono.add("oikea");
-                        nytX++;
-                        if (nytX==x && nytY==y){
-                            break;
-                        }
-                    }
-                } else {
-                    while (lab[nytX][nytY+1]==1 && lab[nytX][nytY-1]==1 && lab[nytX-1][nytY]!=1){
-                        jono.add("vasen");
-                        nytX--;
-                        if (nytX==x && nytY==y){
-                            break;
-                        }
-                    }
-                }
-            }
-        }
+    public final void etsiReitti(){
+        //int maaliX = kohde.getX();
+        //int maaliY = kohde.getY();
+        //keskeeeennnn
     }
     
     /**

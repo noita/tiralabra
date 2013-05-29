@@ -11,9 +11,21 @@ package tiralabra;
  * @author O
  */
 public class Vedonlyonti {
+    /**
+     * Asetettu panos.
+     */
     int panos;
+    /**
+     * Nykyiset pelaajan varat.
+     */
     int varat;
+    /**
+     * Viimeisin voitettu summa.
+     */
     int viimVoitto;
+    /**
+     * Pelaajan valitsema haamu.
+     */
     String valittuHaamu;
     
     public Vedonlyonti(){

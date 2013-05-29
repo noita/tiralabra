@@ -25,7 +25,7 @@ public class ValikonKuuntelija implements ActionListener{
             //uusi peli
             peli.lopetaKierros("none");
             peli.nollaaVedot();
-            peli.uusiKierros("pacman");
+            peli.uusiKierros(peli.nykyinenKentta);
             peli.getGraf().repaint();
         } else if (valinta.equals("Quit Game")){
             //lopeta peli

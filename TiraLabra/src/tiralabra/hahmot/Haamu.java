@@ -31,6 +31,11 @@ public class Haamu {
         suunta = "eioo"; //alussa suuntaa ei ole.
     }
     
+    /**
+     * Asettaa haamun annettuun ruutuun, ei kuitenkaan labyrintin ulkopuolelle.
+     * @param x X-koordinaatti.
+     * @param y Y-koordinaatti.
+     */
     public void setSijainti(int x, int y){
         sijaintiX = Math.max(x, 0);
         sijaintiY = Math.max(0, y);

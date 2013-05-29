@@ -35,11 +35,12 @@ public class Peli implements Runnable{
      */
     GUI kayttis;
     /**
+     * A*-algoritmi.
+     */
+    public Astar astar;
+    /**
      * Piirrosgrafiikka.
      */
-    
-    public Astar astar;//tämä!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    
     public Grafiikka grafiikka;
     /**
      * Vedonlyonnin käsittely.
@@ -49,6 +50,7 @@ public class Peli implements Runnable{
      * Kertoo pelin tilan napeille.
      */
     public String pelinTila;
+    public String nykyinenKentta;
     Liike liike;
     
     
@@ -71,21 +73,32 @@ public class Peli implements Runnable{
      * @param kentta Tiedostonimi kentälle
      */
     public void uusiKierros(String kentta){
+        nykyinenKentta = kentta;
         labyrintti = new LabyrintinLataus(kentta);
         kayttis.muutaKokoa(labyrintti.getKoko());
         
-        haamut.clear();
-        //haamut.add(new Haamu(1,1,"Random"));
-        //haamut.add(new Haamu(1,23,"Greedy"));
-        haamut.add(new Haamu(1,1,"Astar"));
-        //haamut.add(new Haamu(23,1,"Random"));
-        //lisää haamuja...
+        //luodaan haamut.
+        luoHaamut();
         
         //luodaan kohde satunnaiseen tyhjään kohtaan labyrinttiä.
         luoUusiKohde();
-        astar = new Astar(this);//tämä!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        astar = new Astar(labyrintti.getRuudukko(), kohde, haamut);
         pyydaPanoksia();
     }
+    
+    /**
+     * Luo haamut kierrosta varten.
+     */
+    public void luoHaamut(){
+        int ylaraja = labyrintti.getKoko()-2;
+        haamut.clear();
+        //haamut.add(new Haamu(ylaraja,ylaraja,"Random"));
+        //haamut.add(new Haamu(1,ylaraja,"Greedy"));
+        haamut.add(new Haamu(1,1,"Astar"));
+        haamut.add(new Haamu(ylaraja,1,"Random"));
+        //lisää haamuja...
+    }
+    
     /**
      * Lisää uuden kohteen satunnaiseen tyhjään kohtaan labyrintissä.
      */
@@ -108,6 +121,7 @@ public class Peli implements Runnable{
         String taso = JOptionPane.showInputDialog(kayttis.getIkkuna(), "Which stage?");
         if (labyrintti.tarkistaOlemassaolo(taso)){
             uusiKierros(taso);
+            grafiikka.repaint();
         } else {
             JOptionPane.showMessageDialog(kayttis.getIkkuna(), "File not found");
         }
@@ -125,14 +139,19 @@ public class Peli implements Runnable{
      */
     public void aloitaKierros(){
         pelinTila = "käynnissä";
+        
         kayttis.muutaVarat(vedonlyonti.getVarat());
+        
         //is funny joke ha ha ha 
         if (vedonlyonti.getvalittuHaamu().equals("DUKE")){
             kayttis.muutaTilanne("ALWAYS BET ON DUKE!");
         } else {
             kayttis.muutaTilanne("You bet on "+ vedonlyonti.getvalittuHaamu());
         }
-
+        //poistunee
+        
+        astar.etsiReitti();
+        
         if (liike.getState().equals(State.NEW)){
             liike.start();
         } else {
@@ -149,7 +168,6 @@ public class Peli implements Runnable{
         kayttis.muutaTilanne("The Winner is " + voittaja + "!");
         vedonlyonti.tarkistaVoitto(voittaja);
     }
-    
     
     /**
      * Kutsuu GUI:ta esittämään kierroksen tuloksen.
@@ -186,6 +204,7 @@ public class Peli implements Runnable{
      * Sulkee peli-ikkuna ja lopettaa pelin.
      */
     public void suljePeli(){
+        pelinTila = "loppu";
         liike.interrupt();
         kayttis.sulje();
     }
