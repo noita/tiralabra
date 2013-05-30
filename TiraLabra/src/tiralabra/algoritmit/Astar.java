@@ -188,7 +188,7 @@ public class Astar {
      * maalista lähtöön.
      */
     public void luoReitti(){
-        
+        /*
         for (int i = 0; i<kasitellyt.length; i++){
             for (int j = 0; j<kasitellyt.length; j++){
                 if (reitti[i][j].equals("alas")){
@@ -205,7 +205,7 @@ public class Astar {
                 }
             System.out.println("");
         }
-        
+        */
         polku.tyhjenna();
         int x = maaliX;
         int y = maaliY;
