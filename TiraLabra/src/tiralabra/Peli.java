@@ -5,6 +5,8 @@ import java.lang.Thread.State;
 import java.util.*;
 import javax.swing.JOptionPane;
 import tiralabra.algoritmit.Astar;
+import tiralabra.algoritmit.Dijkstra;
+import tiralabra.algoritmit.Greedy;
 import tiralabra.hahmot.Haamu;
 import tiralabra.hahmot.Kohde;
 import tiralabra.hahmot.Liike;
@@ -35,9 +37,17 @@ public class Peli implements Runnable{
      */
     GUI kayttis;
     /**
+     * Dijkstra-algoritmi
+     */
+    public Dijkstra dijkstra;
+    /**
      * A*-algoritmi.
      */
     public Astar astar;
+    /**
+     * Ahne algoritmi.
+     */
+    public Greedy greedy;
     /**
      * Piirrosgrafiikka.
      */
@@ -82,7 +92,9 @@ public class Peli implements Runnable{
         
         //luodaan kohde satunnaiseen tyhjään kohtaan labyrinttiä.
         luoUusiKohde();
+        dijkstra = new Dijkstra(labyrintti.getRuudukko(), kohde, haamut);
         astar = new Astar(labyrintti.getRuudukko(), kohde, haamut);
+        greedy = new Greedy(labyrintti.getRuudukko(), kohde);
         pyydaPanoksia();
     }
     
@@ -92,11 +104,11 @@ public class Peli implements Runnable{
     public void luoHaamut(){
         int ylaraja = labyrintti.getKoko()-2;
         haamut.clear();
-        //haamut.add(new Haamu(ylaraja,ylaraja,"Random"));
-        //haamut.add(new Haamu(1,ylaraja,"Greedy"));
+        haamut.add(new Haamu(ylaraja,ylaraja,"Dijkstra"));
+        haamut.add(new Haamu(1,ylaraja,"Greedy"));
         haamut.add(new Haamu(1,1,"Astar"));
         haamut.add(new Haamu(ylaraja,1,"Random"));
-        //lisää haamuja...
+        //lisää haamuja...?
     }
     
     /**
@@ -143,15 +155,20 @@ public class Peli implements Runnable{
         kayttis.muutaVarat(vedonlyonti.getVarat());
         
         //is funny joke ha ha ha 
+        /*
         if (vedonlyonti.getvalittuHaamu().equals("DUKE")){
             kayttis.muutaTilanne("ALWAYS BET ON DUKE!");
         } else {
             kayttis.muutaTilanne("You bet on "+ vedonlyonti.getvalittuHaamu());
         }
+        */
         //poistunee
         
+        //etsitään reitit
+        dijkstra.etsiReitti();
         astar.etsiReitti();
         
+        //aloitetaan liike
         if (liike.getState().equals(State.NEW)){
             liike.start();
         } else {
@@ -159,8 +176,9 @@ public class Peli implements Runnable{
             liike.start();
         }
     }
+    
     /**
-     * Ilmoittaa kirreoksen loppuneen ja tarkistaa vedonlyonnin tuloksen.
+     * Ilmoittaa kierroksen loppuneen ja tarkistaa vedonlyonnin tuloksen.
      * @param voittaja 
      */
     public void lopetaKierros(String voittaja){
@@ -173,7 +191,11 @@ public class Peli implements Runnable{
      * Kutsuu GUI:ta esittämään kierroksen tuloksen.
      */
     public void tuloksenEsitys(){
-        kayttis.esitaTulos(vedonlyonti.getViimVoitto());
+        if (vedonlyonti.getVarat()<=100){
+            kayttis.esitaLopetus();
+        } else {
+            kayttis.esitaTulos(vedonlyonti.getViimVoitto());
+        }
     }
 
     /**

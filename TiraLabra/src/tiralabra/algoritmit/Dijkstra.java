@@ -5,14 +5,15 @@ import java.util.ArrayList;
 import tiralabra.Ruutu;
 import tiralabra.hahmot.Haamu;
 import tiralabra.hahmot.Kohde;
-import tiralabra.tietorakenteet.OmaPrioriteettiJono;
 import tiralabra.tietorakenteet.OmaPino;
+import tiralabra.tietorakenteet.OmaPrioriteettiJono;
 
 /**
- * A*-polunetsintäalgoritmi.
+ * Dijkstra-polunetsintäalgoritmi.
+ * Periaatteessa A*, jossa heurestiikkafunktiona on nollafunktio.
  * @author O
  */
-public class Astar {
+public class Dijkstra {
     /**
      * Pelin nykyinen labyrintti
      */
@@ -38,14 +39,6 @@ public class Astar {
      */
     int maaliY;
     /**
-     * Taulu etäisyysarvioille
-     */
-    int[][] alkuun;
-    /**
-     * Taulu heurestiikkafunktion arvoille
-     */
-    int[][] loppuun;
-    /**
      * Taulu, joka kertoo onko solmu jo käsitelty
      */
     boolean[][] kasitellyt;
@@ -67,12 +60,12 @@ public class Astar {
     public int polunPituus;
     
     
-    public Astar(int[][] lab, Kohde kohde, ArrayList<Haamu> haamut){
+    public Dijkstra(int[][] lab, Kohde kohde, ArrayList<Haamu> haamut){
         labyrintti = lab;
         maaliX = kohde.getY();
         maaliY = kohde.getX();
         for (Haamu h : haamut){
-            if (h.getAlgo().equals("Astar")){
+            if (h.getAlgo().equals("Dijkstra")){
                 lahtoX = h.getY();
                 lahtoY = h.getX();
                 break;
@@ -83,12 +76,10 @@ public class Astar {
     /**
      * Etsii reitin lähtöruudusta maaliruutuun.
      */
-    public final void etsiReitti(){
-        alustaAputaulut();
-        
+    public final void etsiReitti(){        
         seuraava.clear();
-        //lisätään aloitusruutu käsiteltäväksi
-        seuraava.add(lab[lahtoX][lahtoY]);
+        alustaAputaulut();
+
         //jatketaan käsittelyä, kunnes saavutaan maaliin
         while (!kasitellyt[maaliX][maaliY]){
             kasitteleRuutu(seuraava.poll());
@@ -103,8 +94,6 @@ public class Astar {
     public void alustaAputaulut(){
         int iso = 999999;
         
-        alkuun = new int[labyrintti.length][labyrintti.length];
-        loppuun = new int[labyrintti.length][labyrintti.length];
         kasitellyt = new boolean[labyrintti.length][labyrintti.length];
         reitti = new String[labyrintti.length][labyrintti.length];
         lab = new Ruutu[labyrintti.length][labyrintti.length];
@@ -113,20 +102,17 @@ public class Astar {
             for (int j = 0; j<kasitellyt.length; j++){
                 lab[i][j] = new Ruutu(iso,i,j);
                 reitti[i][j] = "eiole";
-                kasitellyt[i][j] = false;
-                if (labyrintti[i][j]==1){
-                    //seinät merkitään käsitellyiksi, jolloin niitä
-                    //ei voida käyttää polulla.
-                    kasitellyt[i][j] = true;
+                kasitellyt[i][j] = true;//tämä
+                if (labyrintti[i][j]!=1){//tämä
+                    seuraava.add(lab[i][j]);//tämä
+                    kasitellyt[i][j] = false;//tämä
                 }
-                alkuun[i][j] = iso;
             }
         }
-        //init. single source:
-        lab[lahtoX][lahtoY].setArvo(0);
-        alkuun[lahtoX][lahtoY] = 0;
+        
+        lab[lahtoX][lahtoY].setArvo(0);//????
+        seuraava.setKey(lahtoX, lahtoY, 0);//tämäkin
         reitti[lahtoX][lahtoY] = "lähtö";
-        loppuun[lahtoX][lahtoY] = Math.abs(maaliX-lahtoX)+Math.abs(maaliY-lahtoY);
     }
     
     /**
@@ -139,24 +125,19 @@ public class Astar {
         
         //merkitään käsitellyksi;
         kasitellyt[x][y] = true;
+        if (labyrintti[x+1][y]!=1 && lab[x][y].getArvo()+1<=lab[x+1][y].getArvo()){
+            paivitaRuutu(x+1,y,lab[x][y].getArvo(),"ylös");
+        }
+        if (labyrintti[x-1][y]!=1 && lab[x][y].getArvo()+1<=lab[x-1][y].getArvo()){
+            paivitaRuutu(x-1,y,lab[x][y].getArvo(),"alas");
+        }
+        if (labyrintti[x][y+1]!=1 && lab[x][y].getArvo()+1<=lab[x][y+1].getArvo()){
+            paivitaRuutu(x,y+1,lab[x][y].getArvo(),"vasen");
+        }
+        if (labyrintti[x][y-1]!=1 && lab[x][y].getArvo()+1<=lab[x][y-1].getArvo()){
+            paivitaRuutu(x,y-1,lab[x][y].getArvo(),"oikea");
+        }
         
-        //päivitetään naapurit ja lisätään jonoon:
-        if(!kasitellyt[x+1][y] && alkuun[x][y]+1<=alkuun[x+1][y]){
-            paivitaRuutu(x+1,y,alkuun[x][y],"ylös");
-            lisaaRuutu(x+1,y);
-        }
-        if(!kasitellyt[x-1][y]&& alkuun[x][y]+1<=alkuun[x-1][y]){
-            paivitaRuutu(x-1,y,alkuun[x][y],"alas");
-            lisaaRuutu(x-1,y);
-        }
-        if(!kasitellyt[x][y+1]&& alkuun[x][y]+1<=alkuun[x][y+1]){
-            paivitaRuutu(x,y+1,alkuun[x][y],"vasen");
-            lisaaRuutu(x,y+1);
-        }
-        if(!kasitellyt[x][y-1]&& alkuun[x][y]+1<=alkuun[x][y-1]){
-            paivitaRuutu(x,y-1,alkuun[x][y],"oikea");
-            lisaaRuutu(x,y-1);
-        }
     }
     
     /**
@@ -167,10 +148,9 @@ public class Astar {
      * @param suunta suunta, josta ruutuun on saavuttu
      */
     public void paivitaRuutu(int x, int y, int pituus, String suunta){
-        alkuun[x][y] = pituus+1;
-        loppuun[x][y] = Math.abs(maaliX-x)+Math.abs(maaliY-y);
         reitti[x][y] = suunta;
-        lab[x][y].setArvo(Math.min(alkuun[x][y]+loppuun[x][y], lab[x][y].getArvo()));
+        seuraava.setKey(x, y, pituus+1);
+        lab[x][y].setArvo(pituus+1);
     }
     
     /**

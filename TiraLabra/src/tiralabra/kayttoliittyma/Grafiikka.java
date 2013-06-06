@@ -19,6 +19,7 @@ public class Grafiikka extends Canvas{
     Image astarHaamu;
     Image greedyHaamu;
     Image randomHaamu;
+    Image dijkstraHaamu;
     Image kohde;
     
     public Grafiikka(Peli peli){
@@ -41,7 +42,7 @@ public class Grafiikka extends Canvas{
                     //kohtaan 20*i,20*j
                     //tai ehkä taustaväri toimii lattiana emt.
                 }
-                //muita tyyppejä lisätään...
+                //muita tyyppejä lisätään...?
             }
         }
         
@@ -55,6 +56,8 @@ public class Grafiikka extends Canvas{
                 g.drawImage(randomHaamu, 20*h.getX(), 20*h.getY(), this);
             } else if (algo.equals("Greedy")){
                 g.drawImage(greedyHaamu, 20*h.getX(), 20*h.getY(), this);
+            } else if (algo.equals("Dijkstra")){
+                g.drawImage(dijkstraHaamu, 20*h.getX(), 20*h.getY(), this);
             }
         }
         this.setSize(20*lab.getKoko(), 20*lab.getKoko());
@@ -75,6 +78,8 @@ public class Grafiikka extends Canvas{
             greedyHaamu = ImageIO.read(greedy);
             File random = new File("kuvat/randomHaamu.gif");
             randomHaamu = ImageIO.read(random);
+            File dijkstra = new File("kuvat/dijkstrahaamu.gif");
+            dijkstraHaamu = ImageIO.read(dijkstra);
         } catch (Exception e){
             //System.out.println("vitun kuvat");
         }

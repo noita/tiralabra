@@ -11,6 +11,7 @@ public class Random {
     
     public Random(){
     }
+    
     /**
      * Arpoo satunnaisesti seuraavan askeleen haamulle, askel ei kuitenkaan voi
      * olla takaisin tulosuuntaan, ellei haamu ole umpikujassa.

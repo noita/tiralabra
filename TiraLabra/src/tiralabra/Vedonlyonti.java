@@ -59,6 +59,9 @@ public class Vedonlyonti {
             } else if (haamu.equals("Greedy")){
                 varat += (int)(panos*2);
                 viimVoitto = (int)(panos*2);
+            } else if (haamu.equals("Dijkstra")){
+                varat += (int)(panos*1.6);
+                viimVoitto = (int)(panos*1.6);
             }
         } else {
             panos = 0;

@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package algoritmitestit;
 
 import org.junit.After;
@@ -10,12 +7,20 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import tiralabra.algoritmit.Greedy;
+import tiralabra.hahmot.Haamu;
+import tiralabra.hahmot.Kohde;
 
 /**
  *
  * @author O
  */
 public class GreedyTest {
+    Greedy greedy;
+    int[][] lab;
+    Kohde kohde;
+    Haamu haamu;
+    
     
     public GreedyTest() {
     }
@@ -30,14 +35,79 @@ public class GreedyTest {
     
     @Before
     public void setUp() {
+        kohde = new Kohde(1,1);
+        haamu = new Haamu(1,1,"Greedy");
     }
     
     @After
     public void tearDown() {
     }
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
+    
+    @Test
+    public void testaaLyhytPolku1(){
+        haamu.setSijainti(1, 1);
+        kohde.setSijainti(3, 3);
+        int[][] lab = {
+            {1,1,1,1,1},
+            {1,0,0,0,1},
+            {1,0,0,0,1},
+            {1,0,0,0,1},
+            {1,1,1,1,1}
+        };
+        greedy = new Greedy(lab, kohde);
+        int[] askel = greedy.seuraavaAskel(haamu);
+        haamu.setSijainti(askel[0], askel[1]);
+        askel = greedy.seuraavaAskel(haamu);
+        haamu.setSijainti(askel[0], askel[1]);
+        askel = greedy.seuraavaAskel(haamu);
+        haamu.setSijainti(askel[0], askel[1]);
+        askel = greedy.seuraavaAskel(haamu);
+        haamu.setSijainti(askel[0], askel[1]);
+        assertEquals(haamu.getX(),3);
+        assertEquals(haamu.getY(),3);
+    }
+    
+    @Test
+    public void testaaLyhytPolku2(){
+        haamu.setSijainti(1, 1);
+        kohde.setSijainti(3, 3);
+        int[][] lab = {
+            {1,1,1,1,1},
+            {1,0,0,0,1},
+            {1,0,1,1,1},
+            {1,0,0,0,1},
+            {1,1,1,1,1}
+        };
+        greedy = new Greedy(lab, kohde);
+        int[] askel = greedy.seuraavaAskel(haamu);
+        haamu.setSijainti(askel[0], askel[1]);
+        askel = greedy.seuraavaAskel(haamu);
+        haamu.setSijainti(askel[0], askel[1]);
+        askel = greedy.seuraavaAskel(haamu);
+        haamu.setSijainti(askel[0], askel[1]);
+        askel = greedy.seuraavaAskel(haamu);
+        haamu.setSijainti(askel[0], askel[1]);
+        assertEquals(haamu.getX(),3);
+        assertEquals(haamu.getY(),3);
+    }
+    
+    @Test
+    public void testaaLyhytPolku3(){
+        haamu.setSijainti(1, 1);
+        kohde.setSijainti(1, 3);
+        int[][] lab = {
+            {1,1,1,1,1},
+            {1,0,0,0,1},
+            {1,0,0,0,1},
+            {1,0,0,0,1},
+            {1,1,1,1,1}
+        };
+        greedy = new Greedy(lab, kohde);
+        int[] askel = greedy.seuraavaAskel(haamu);
+        haamu.setSijainti(askel[0], askel[1]);
+        askel = greedy.seuraavaAskel(haamu);
+        haamu.setSijainti(askel[0], askel[1]);
+        assertEquals(haamu.getX(),1);
+        assertEquals(haamu.getY(),3);
+    }
 }

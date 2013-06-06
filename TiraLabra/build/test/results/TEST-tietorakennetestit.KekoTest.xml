@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="0" failures="0" hostname="kone.p-661hnu-f1" name="tietorakennetestit.PinoTest" tests="8" time="0.087" timestamp="2013-06-06T12:04:43">
+<testsuite errors="0" failures="0" hostname="kone.p-661hnu-f1" name="tietorakennetestit.KekoTest" tests="6" time="0.084" timestamp="2013-06-06T12:04:42">
   <properties>
     <property name="libs.jsp-compiler.javadoc" value="" />
     <property name="netbeans.autoupdate.country" value="US" />
@@ -62,7 +62,7 @@
     <property name="manifest.available+main.class" value="true" />
     <property name="libs.spring-webmvc3.0.maven-pom" value="" />
     <property name="libs.swing-layout.maven-pom" value="" />
-    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner tietorakennetestit.PinoTest filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,/Users/O/tiralabra/TiraLabra/build/test/results/TEST-tietorakennetestit.PinoTest.xml crashfile=/Users/O/tiralabra/TiraLabra/build/junitvmwatcher4552212432207496038.properties propsfile=/Users/O/tiralabra/TiraLabra/build/junit4514501441724395960.properties" />
+    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner tietorakennetestit.KekoTest filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,/Users/O/tiralabra/TiraLabra/build/test/results/TEST-tietorakennetestit.KekoTest.xml crashfile=/Users/O/tiralabra/TiraLabra/build/junitvmwatcher7600300930270855720.properties propsfile=/Users/O/tiralabra/TiraLabra/build/junit159665988982889526.properties" />
     <property name="build.classes.dir" value="build/classes" />
     <property name="netbeans.accept_license_class" value="org.netbeans.license.AcceptLicense" />
     <property name="ant.file.TiraLabra" value="/Users/O/tiralabra/TiraLabra/build.xml" />
@@ -438,14 +438,12 @@
     <property name="platform.active" value="default_platform" />
     <property name="awt.toolkit" value="apple.awt.CToolkit" />
   </properties>
-  <testcase classname="tietorakennetestit.PinoTest" name="tyhjaPino" time="0.0020" />
-  <testcase classname="tietorakennetestit.PinoTest" name="eiTyhjaPino" time="0.0" />
-  <testcase classname="tietorakennetestit.PinoTest" name="pinoTyhjenee" time="0.0" />
-  <testcase classname="tietorakennetestit.PinoTest" name="pinoPalauttaaOikean" time="0.0" />
-  <testcase classname="tietorakennetestit.PinoTest" name="tyhjastaPoistoEiKaada" time="0.0" />
-  <testcase classname="tietorakennetestit.PinoTest" name="pinonTyhjennysToimii" time="0.0010" />
-  <testcase classname="tietorakennetestit.PinoTest" name="kokoPaivittyyOikein" time="0.0010" />
-  <testcase classname="tietorakennetestit.PinoTest" name="kokoEiNegatiivinen" time="0.0" />
+  <testcase classname="tietorakennetestit.KekoTest" name="lisaysToimiiOikein" time="0.0020" />
+  <testcase classname="tietorakennetestit.KekoTest" name="kekoPalauttaaOikean" time="0.0" />
+  <testcase classname="tietorakennetestit.KekoTest" name="kokoOnOikea" time="0.0" />
+  <testcase classname="tietorakennetestit.KekoTest" name="arvonmuutosToimii" time="0.0" />
+  <testcase classname="tietorakennetestit.KekoTest" name="kekoEhtoSailyy" time="0.0" />
+  <testcase classname="tietorakennetestit.KekoTest" name="keonKasvatusToimii" time="0.0" />
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

@@ -23,10 +23,11 @@ public class Liike extends Thread{
     
     @Override
     public void run(){
+        int luku = 1;
         while (true){
             for (Haamu h : peli.getHaamut()){
                 //liikutetaan haamuja
-                liikutaHaamua(h);
+                liikutaHaamua(h, luku);
                 peli.grafiikka.repaint();
                 if (h.sijaintiX == peli.getKohde().sijaintiX && h.sijaintiY == peli.getKohde().sijaintiY){
                     //peli loppui.
@@ -35,7 +36,8 @@ public class Liike extends Thread{
                 }
             }
             try {
-                this.sleep(500);
+                luku++;
+                this.sleep(100);
             } catch (InterruptedException e){
                 //häh
                 if (!peli.pelinTila.equals("loppu")){
@@ -50,17 +52,19 @@ public class Liike extends Thread{
      * Siirtää haamu askeleen algoritmin mukaan.
      * @param haamu Liikutettava haamu.
      */
-    public void liikutaHaamua(Haamu haamu){
+    public void liikutaHaamua(Haamu haamu, int luku){
         labyrintti = peli.getLabyrintti().getRuudukko();
         int [] xy = new int[2];
+        xy[0] = haamu.getX();
+        xy[1] = haamu.getY();
         if (haamu.getAlgo().equals("Random")){
             xy = rand.seuraavaAskel(haamu, labyrintti);
-        } else if (haamu.getAlgo().equals("Astar")){
+        } else if (haamu.getAlgo().equals("Astar")&& luku%3 == 0){
             xy = peli.astar.seuraavaAskel(haamu);
-        } else if (haamu.getAlgo().equals("Greedy")){
-            //liikutetaan Greedyllä myöhemmin
-            xy[0] = haamu.getX();
-            xy[1] = haamu.getY();
+        } else if (haamu.getAlgo().equals("Greedy")&& luku%2 == 0){
+            xy = peli.greedy.seuraavaAskel(haamu);
+        } else if (haamu.getAlgo().equals("Dijkstra")&& luku%4 == 0){
+            xy = peli.dijkstra.seuraavaAskel(haamu);
         }
         haamu.setSijainti(xy[0], xy[1]);
     }

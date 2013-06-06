@@ -60,7 +60,7 @@ public class GUI {
         valitseGreedy.addActionListener(new NappienKuuntelija(peli));
         JButton valitseRandom = new JButton("Random");
         valitseRandom.addActionListener(new NappienKuuntelija(peli));
-        JButton valitseJoku = new JButton("DUKE");
+        JButton valitseJoku = new JButton("Dijkstra");
         valitseJoku.addActionListener(new NappienKuuntelija(peli));
         //kesken...
         
@@ -120,11 +120,20 @@ public class GUI {
     public void esitaTulos(int voitto){
         int x;
         if (voitto == 0){
-            x = JOptionPane.showConfirmDialog(ikkuna, "You Lost 100$...\n New Round?", "Round Over", 2);
+            x = JOptionPane.showConfirmDialog(ikkuna, "You Lost $100...\n New Round?", "Round Over", 2);
         } else {
-            x = JOptionPane.showConfirmDialog(ikkuna, "You Won " + voitto + "$!\n New Round?", "Round Over", 2);
+            x = JOptionPane.showConfirmDialog(ikkuna, "You Won $" + voitto + "!\n New Round?", "Round Over", 2);
         }
         if (x == 0){
+            peli.uusiKierros(peli.nykyinenKentta);
+        }
+    }
+    
+    
+    public void esitaLopetus(){
+        int x = JOptionPane.showConfirmDialog(ikkuna, "No More Cash To Bet...\n New Game?", "Game Over", 2);
+        if (x == 0){
+            peli.nollaaVedot();
             peli.uusiKierros(peli.nykyinenKentta);
         }
     }
