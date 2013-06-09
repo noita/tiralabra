@@ -10,6 +10,12 @@ public class Ruutu implements Comparable<Ruutu>{
     int sijaintiX;
     int sijaintiY;
     
+    /**
+     * Luo uuden ruudun.
+     * @param arvo Ruudun arvo.
+     * @param x Ruudun sijainti x-akselilla.
+     * @param y Ruudun sijainti y-akselilla.
+     */
     public Ruutu(int arvo, int x, int y){
         this.arvo = arvo;
         sijaintiX = x;

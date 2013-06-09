@@ -3,7 +3,6 @@ package tiralabra.kayttoliittyma;
 
 import java.awt.*;
 import java.io.*;
-//import java.util.*;
 import javax.imageio.*;
 import tiralabra.Peli;
 import tiralabra.hahmot.Haamu;
@@ -22,6 +21,10 @@ public class Grafiikka extends Canvas{
     Image dijkstraHaamu;
     Image kohde;
     
+    /**
+     * Luo uuden grafiikka-olion.
+     * @param peli Peli, jonka grafiikka on kyseessä.
+     */
     public Grafiikka(Peli peli){
         this.peli = peli;
         this.setFocusable(false);
@@ -81,7 +84,7 @@ public class Grafiikka extends Canvas{
             File dijkstra = new File("kuvat/dijkstrahaamu.gif");
             dijkstraHaamu = ImageIO.read(dijkstra);
         } catch (Exception e){
-            //System.out.println("vitun kuvat");
+            //eimitn.
         }
     }
 }

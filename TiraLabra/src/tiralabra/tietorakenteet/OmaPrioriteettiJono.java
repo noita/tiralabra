@@ -2,7 +2,6 @@ package tiralabra.tietorakenteet;
 
 import tiralabra.Ruutu;
 
-
 /**
  * Ruutu-muotoisten alkioiden minimikeko, toimii prioriteettijonona.
  * @author O
@@ -11,6 +10,9 @@ public class OmaPrioriteettiJono {
     int koko;
     Ruutu[] alkiot;
     
+    /**
+     * Luo uuden keon, alustaa kooksi 0 ja luo uuden taulun alkioille.
+     */
     public OmaPrioriteettiJono(){
         alkiot = new Ruutu[14];
         koko = 0;
@@ -108,7 +110,7 @@ public class OmaPrioriteettiJono {
     
     /**
      * Kertoo, onko keko tyhjä.
-     * @return 
+     * @return True, jos keon koko on nolla, muuten false. 
      */
     public boolean isEmpty(){
         return (koko==0);
@@ -170,6 +172,7 @@ public class OmaPrioriteettiJono {
      * Kuvaa keon String-muodossa.
      * @return keon kuvaus
      */
+    @Override
     public String toString(){
         String tuloste = "";
         int i = 0;

@@ -24,6 +24,12 @@ public class Haamu {
      */
     String algoritmi;
     
+    /**
+     * Luo uuden haamun.
+     * @param x Haamun x-sijainti.
+     * @param y Haamun y-sijainti.
+     * @param algo Haamun ja tämän algoritmin nimi.
+     */
     public Haamu(int x, int y, String algo){
         sijaintiX = x;
         sijaintiY = y;

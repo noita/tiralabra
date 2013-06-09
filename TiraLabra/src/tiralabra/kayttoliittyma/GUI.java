@@ -32,6 +32,10 @@ public class GUI {
      */
     Peli peli;
     
+    /**
+     * Luo uuden GUI-olion.
+     * @param peli Peli, jonka käyttöliittymä on kyseessä.
+     */
     public GUI(Peli peli){
         this.labyrintti = peli.getLabyrintti();
         this.peli = peli;

@@ -28,6 +28,9 @@ public class Vedonlyonti {
      */
     String valittuHaamu;
     
+    /**
+     * Luo uuden vedolyönti olion.
+     */
     public Vedonlyonti(){
         varat = 1000;
         panos = 0;

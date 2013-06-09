@@ -16,6 +16,11 @@ public class Kohde {
      */
     int sijaintiY;
     
+    /**
+     * Luo uuden kohteen.
+     * @param x Kohteen x-sijainti.
+     * @param y Kohteen y-sijainti.
+     */
     public Kohde(int x, int y){
         sijaintiX = x;
         sijaintiY = y;

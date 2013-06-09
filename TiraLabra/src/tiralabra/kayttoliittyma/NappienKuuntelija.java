@@ -13,6 +13,10 @@ import tiralabra.Peli;
 public class NappienKuuntelija implements ActionListener{
     Peli peli;
     
+    /**
+     * Luo uuden nappien kuuntelijan.
+     * @param peli Kuunneltava peli.
+     */
     public NappienKuuntelija(Peli peli){
         this.peli = peli;
     }

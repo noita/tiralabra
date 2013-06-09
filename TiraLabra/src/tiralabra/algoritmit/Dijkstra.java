@@ -59,7 +59,12 @@ public class Dijkstra {
      */
     public int polunPituus;
     
-    
+    /**
+     * Luo uuden Dijkstra-olion.
+     * @param lab Pelin labyrintti.
+     * @param kohde Polun päätepisteenä oleva kohde.
+     * @param haamut Pelin haamut.
+     */
     public Dijkstra(int[][] lab, Kohde kohde, ArrayList<Haamu> haamut){
         labyrintti = lab;
         maaliX = kohde.getY();

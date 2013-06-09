@@ -14,7 +14,11 @@ public class Greedy {
     int maaliX;
     int maaliY;
     
-    
+    /**
+     * Luo uuden Greedy-olion.
+     * @param lab Pelin labyrintti.
+     * @param kohde Kohde, jota kohti liikutaan.
+     */
     public Greedy(int[][] lab, Kohde kohde){
         labyrintti = lab;
         maaliX = kohde.getY();

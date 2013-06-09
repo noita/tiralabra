@@ -9,6 +9,9 @@ import tiralabra.hahmot.Haamu;
  */
 public class Random {
     
+    /**
+     * Luo uuden Random-olion.
+     */
     public Random(){
     }
     

@@ -2,9 +2,7 @@
 package tiralabra.hahmot;
 
 import tiralabra.Peli;
-import tiralabra.algoritmit.Greedy;
 import tiralabra.algoritmit.Random;
-
 
 /**
  * Olioiden liikkumisen määrittelevä luokka.
@@ -16,7 +14,10 @@ public class Liike extends Thread{
     Random rand = new Random();
     int[][] labyrintti;
     
-    
+    /**
+     * Luo uuden liike-olion.
+     * @param peli Peli, jossa liikettä käytetään.
+     */
     public Liike(Peli peli){
         this.peli = peli;
     }

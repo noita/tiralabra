@@ -66,7 +66,12 @@ public class Astar {
      */
     public int polunPituus;
     
-    
+    /**
+     * Luo uuden Astar-olion.
+     * @param lab Pelin labyrintti.
+     * @param kohde Polun päätepisteenä oleva kohde.
+     * @param haamut Pelin haamut.
+     */
     public Astar(int[][] lab, Kohde kohde, ArrayList<Haamu> haamut){
         labyrintti = lab;
         maaliX = kohde.getY();

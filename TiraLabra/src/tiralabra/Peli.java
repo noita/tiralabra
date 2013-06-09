@@ -60,7 +60,13 @@ public class Peli implements Runnable{
      * Kertoo pelin tilan napeille.
      */
     public String pelinTila;
+    /**
+     * Nykyisen kentän nimi.
+     */
     public String nykyinenKentta;
+    /**
+     * Liike olio.
+     */
     Liike liike;
     
     

@@ -19,21 +19,15 @@ public class LabyrintinLataus {
      */
     int[][] intRuudukko;
     
+    /**
+     * Luo uuden labyrintin lataaja-olion.
+     * @param tiedosto Ensimmäisenä ladattava labyrintti.
+     */
     public LabyrintinLataus(String tiedosto){
         int koko = lataaKentanKoko(tiedosto);
         ruudukko = new String[koko][koko];
         intRuudukko = new int[koko][koko];
-        /*for (int i=0; i<koko; i++){
-            for (int j=0; j<koko; j++){
-                if( i==0 || j==0 ){
-                    ruudukko[i][j] = "seinä";
-                } else if (i==koko-1 || j==koko-1){
-                    ruudukko[i][j] = "seinä";
-                } else {
-                    ruudukko[i][j] = "tyhjä";
-                }
-            }
-        }*/
+        
         lataaLabyrintti(tiedosto);
     }
     
@@ -63,7 +57,7 @@ public class LabyrintinLataus {
                 }
             }
         } catch (Exception e){
-            //System.out.println("vitun kentät: "+e.toString());
+            //ei mitn.
         }
     }
     
@@ -78,7 +72,7 @@ public class LabyrintinLataus {
             Scanner lukija = new Scanner(new File("kentat/" + tiedosto + ".txt"));
             luku = lukija.nextInt();
         } catch (Exception e){
-            System.out.println("fuck; size");
+            
         }
         return luku;
     }

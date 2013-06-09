@@ -2,20 +2,24 @@
 package tiralabra.tietorakenteet;
 
 /**
- * String-muotoisten alkioiden pino.
+ * String-muotoisten alkioiden pino,
+ * toteutettu linkitettynä listana.
  * @author O
  */
 public class OmaPino {
     PinoAlkio huippu;
     int koko;
     
+    /**
+     * Luo uuden pinon, alustaa kooksi 0.
+     */
     public OmaPino(){
         koko = 0;
     }
     
     /**
-     * Palautta pinon päälimmäisimmän alkio, jos pinossa on jotain.
-     * @return pinon päälimmäinen alkio, null, jos pino on tyhjä
+     * Palautta pinon päälimmäisen alkion, jos pinossa on jotain.
+     * @return pinon päälimmäinen alkio tai null, jos pino on tyhjä
      */
     public String pop(){
         if (!onTyhja()){

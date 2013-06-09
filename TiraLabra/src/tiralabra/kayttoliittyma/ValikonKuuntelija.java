@@ -14,6 +14,10 @@ import tiralabra.Peli;
 public class ValikonKuuntelija implements ActionListener{
     Peli peli;
 
+    /**
+     * Luo uuden valikonkuuntelija-olion.
+     * @param peli Kuunneltava peli.
+     */
     public ValikonKuuntelija(Peli peli){
         this.peli = peli;
     }
