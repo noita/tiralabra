@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="0" failures="0" hostname="kone.p-661hnu-f1" name="algoritmitestit.AstarTest" tests="5" time="0.11" timestamp="2013-06-09T12:34:28">
+<testsuite errors="0" failures="0" hostname="kone.p-661hnu-f1" name="algoritmitestit.AstarTest" tests="5" time="0.109" timestamp="2013-06-10T12:27:24">
   <properties>
     <property name="libs.jsp-compiler.javadoc" value="" />
     <property name="netbeans.autoupdate.country" value="US" />
@@ -62,7 +62,7 @@
     <property name="manifest.available+main.class" value="true" />
     <property name="libs.spring-webmvc3.0.maven-pom" value="" />
     <property name="libs.swing-layout.maven-pom" value="" />
-    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner algoritmitestit.AstarTest filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,/Users/O/tiralabra/TiraLabra/build/test/results/TEST-algoritmitestit.AstarTest.xml crashfile=/Users/O/tiralabra/TiraLabra/build/junitvmwatcher489920891346595516.properties propsfile=/Users/O/tiralabra/TiraLabra/build/junit7860487296570191023.properties" />
+    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner algoritmitestit.AstarTest filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,/Users/O/tiralabra/TiraLabra/build/test/results/TEST-algoritmitestit.AstarTest.xml crashfile=/Users/O/tiralabra/TiraLabra/build/junitvmwatcher3983597888720191344.properties propsfile=/Users/O/tiralabra/TiraLabra/build/junit701130481044278783.properties" />
     <property name="build.classes.dir" value="build/classes" />
     <property name="netbeans.accept_license_class" value="org.netbeans.license.AcceptLicense" />
     <property name="ant.file.TiraLabra" value="/Users/O/tiralabra/TiraLabra/build.xml" />
@@ -438,16 +438,16 @@
     <property name="platform.active" value="default_platform" />
     <property name="awt.toolkit" value="apple.awt.CToolkit" />
   </properties>
-  <testcase classname="algoritmitestit.AstarTest" name="testaaLyhytPolku1" time="0.0050" />
-  <testcase classname="algoritmitestit.AstarTest" name="testaaLyhytPolku2" time="0.0010" />
-  <testcase classname="algoritmitestit.AstarTest" name="testaaLyhytPolku3" time="0.0010" />
+  <testcase classname="algoritmitestit.AstarTest" name="testaaLyhytPolku1" time="0.0040" />
+  <testcase classname="algoritmitestit.AstarTest" name="testaaLyhytPolku2" time="0.0" />
+  <testcase classname="algoritmitestit.AstarTest" name="testaaLyhytPolku3" time="0.0" />
   <testcase classname="algoritmitestit.AstarTest" name="testaaPitkaPolku1" time="0.0080" />
-  <testcase classname="algoritmitestit.AstarTest" name="testaaPitkaPolku2" time="0.02" />
+  <testcase classname="algoritmitestit.AstarTest" name="testaaPitkaPolku2" time="0.019" />
   <system-out><![CDATA[Pieni labyrintti1: Kului: 2ms
 Pieni labyrintti2: Kului: 0ms
-Pieni labyrintti3: Kului: 1ms
+Pieni labyrintti3: Kului: 0ms
 Suuri labyrintti1: Kului: 7ms
-Suuri labyrintti2: Kului: 19ms
+Suuri labyrintti2: Kului: 18ms
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

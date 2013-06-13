@@ -137,19 +137,20 @@ public class KekoTest {
     
     @Test
     public void testaaNopeusAdd(){
-        int n = 1000;
+        int n = 10000;
         long aloitusHetki = System.currentTimeMillis();
         for (int i=0; i<n; i++){
             int luku = new java.util.Random().nextInt(n);
             keko.add(new Ruutu(luku,1,1));
         }
+        //keko.add(new Ruutu(-1,1,1));
         long lopetusHetki = System.currentTimeMillis();
-        System.out.println("ADD: Koko " + keko.size() + ", kului " + (lopetusHetki-aloitusHetki) + "ms.");
+        System.out.println("ADD: Koko " + n + ", kului " + (lopetusHetki-aloitusHetki) + "ms.");
     }
     
     @Test
     public void testaaNopeusPoll(){
-        int n = 1000;
+        int n = 10000;
         for (int i=0; i<n; i++){
             int luku = new java.util.Random().nextInt(n);
             keko.add(new Ruutu(luku,1,1));
@@ -160,5 +161,22 @@ public class KekoTest {
         }
         long lopetusHetki = System.currentTimeMillis();
         System.out.println("POLL: Koko " + n + ", kului " + (lopetusHetki-aloitusHetki) + "ms.");
+    }
+    
+    @Test
+    public void testaaNopeusPollAdd(){
+        int n = 100000;
+        for (int i=0; i<n; i++){
+            int luku = new java.util.Random().nextInt(n);
+            keko.add(new Ruutu(luku,1,1));
+        }
+        long aloitusHetki = System.currentTimeMillis();
+        for (int i=0; i<n; i++){
+            keko.poll();
+            int luku = new java.util.Random().nextInt(n);
+            keko.add(new Ruutu(luku,1,1));
+        }
+        long lopetusHetki = System.currentTimeMillis();
+        System.out.println("POLLADD: Koko " + n + ", kului " + (lopetusHetki-aloitusHetki) + "ms.");
     }
 }
