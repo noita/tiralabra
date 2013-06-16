@@ -165,18 +165,21 @@ public class KekoTest {
     
     @Test
     public void testaaNopeusPollAdd(){
-        int n = 100000;
-        for (int i=0; i<n; i++){
-            int luku = new java.util.Random().nextInt(n);
+        int n = 10;
+        for (int i=1; i<=n; i++){
+        int koko = i*10000;
+        for (int j=0; j<koko; j++){
+            int luku = new java.util.Random().nextInt(koko);
             keko.add(new Ruutu(luku,1,1));
         }
         long aloitusHetki = System.currentTimeMillis();
-        for (int i=0; i<n; i++){
+        for (int j=0; j<koko; j++){
             keko.poll();
-            int luku = new java.util.Random().nextInt(n);
+            int luku = new java.util.Random().nextInt(koko);
             keko.add(new Ruutu(luku,1,1));
         }
         long lopetusHetki = System.currentTimeMillis();
-        System.out.println("POLLADD: Koko " + n + ", kului " + (lopetusHetki-aloitusHetki) + "ms.");
+        System.out.println("POLLADD: Koko " + koko + ", kului " + (lopetusHetki-aloitusHetki) + "ms.");
+        }
     }
 }
